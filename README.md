@@ -1,6 +1,6 @@
 # QLDT_ASP.NET
-Dự án cá nhân xây dựng website bán điện thoại bằng ASP.NET MVC
-Hướng dẫn chạy chương trình:
+# Dự án cá nhân xây dựng website bán điện thoại bằng ASP.NET MVC
+# Hướng dẫn chạy chương trình:
 Bước 1: Tải và giải nén file chương trình.
 Bước 2: Chạy file sql.
 Bước 3: Sửa lại thông tin database (data source=your-data-source) trong WebConfig ở dòng
