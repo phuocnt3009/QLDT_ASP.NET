@@ -1,0 +1,320 @@
+﻿@model PagedList.IPagedList<dynamic>
+@{
+    ViewBag.Title = "Quản lý đơn hàng";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    string tinhtrang = "";
+    int i = (Model.PageNumber - 1) * Model.PageSize; // STT đúng khi phân trang
+    <script>
+        // Hàm tự di chuyển đến mục sản phẩm khi người dùng tìm kiếm
+        document.addEventListener("DOMContentLoaded", function () {
+            // Kiểm tra nếu có tham số tìm kiếm trên URL
+            if (window.location.search.length > 0) {
+                setTimeout(() => {
+                    document.getElementById("order-list").scrollIntoView({ behavior: "smooth" });
+                }, 0);
+            }
+        });
+
+        // Hàm định dạng số
+        function formatNumber(n) {
+            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Hàm reset thông tin các ô tìm kiếm
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("reset-button").addEventListener("click", function (event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định
+
+                // Lấy form
+                let form = document.getElementById("search-form");
+
+                // Xóa giá trị của tất cả input
+                form.querySelectorAll("input").forEach(input => {
+                    if (input.type === "text" || input.type === "number" || input.type === "date") {
+                        input.value = "";
+                    }
+                    if (input.type === "checkbox") {
+                        input.checked = false;
+                    }
+                    if (input.id === "tongTienMin") {
+                        input.value = "0";
+                        document.getElementById("minOutput").textContent = formatNumber(0);
+                    }
+                    if (input.id === "tongTienMax") {
+                        input.value = "500000000";
+                        document.getElementById("maxOutput").textContent = formatNumber(500000000);
+                    }
+                    if (input.type === "radio") {
+                        input.checked = false;
+                    }
+                });
+
+                // Xóa các giá trị trong URL (nếu có)
+                window.history.replaceState(null, null, window.location.pathname);
+
+            });
+        });
+
+        // Hàm cập nhật giá trị khi người dùng kéo thanh giá
+        function updateFormattedValues() {
+            const min = document.getElementById("tongTienMin").value;
+            const max = document.getElementById("tongTienMax").value;
+
+            document.getElementById("minOutput").textContent = formatNumber(min);
+            document.getElementById("maxOutput").textContent = formatNumber(max);
+        }
+    </script>
+}
+<!-- Phần tìm kiếm đơn hàng -->
+<div class="container mt-4 mx-auto" style="width: 830px">
+    <div class="card shadow-lg pb-4">
+        <div class="card-header brand-header text-center">
+            Tìm kiếm đơn hàng
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Index", "NV_DonHangs_23TH0014", FormMethod.Get, new { id = "search-form" }))
+            {
+                @Html.AntiForgeryToken()
+                <table class="table1" align="center" cellpadding="8" style="width: 100%;">
+                    <tr>
+                        <td><strong>Mã đơn hàng:</strong></td>
+                        <td>
+                            @Html.TextBox("MaDDH", ViewBag.MaDDH as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                        <td><strong>Mã khách hàng:</strong></td>
+                        <td>
+                            @Html.TextBox("MaKH", ViewBag.MaKH as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Từ ngày:</strong></td>
+                        <td>
+                            @Html.TextBox("TuNgay", ViewBag.TuNgay as string, new { type = "date", @class = "form-control", style = "width: 100%;" })
+                        </td>
+                        <td><strong>Đến ngày:</strong></td>
+                        <td>
+                            @Html.TextBox("DenNgay", ViewBag.DenNgay as string, new { type = "date", @class = "form-control", style = "width: 100%;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tình trạng:</strong></td>
+                        <td colspan="3">
+                            <div class="row">
+                                <div class="col-3">
+                                    @Html.RadioButton("TinhTrang", 0) Chờ xác nhận
+                                </div>
+                                <div class="col-3">
+                                    @Html.RadioButton("TinhTrang", 1) Chờ giao hàng
+                                </div>
+                                <div class="col-3">
+                                    @Html.RadioButton("TinhTrang", 2) Thành công
+                                </div>
+                                <div class="col-3">
+                                    @Html.RadioButton("TinhTrang", 3) Đã hủy
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thanh toán:</strong></td>
+                        <td colspan="3">
+                            <div class="row">
+                                <div class="col-3">
+                                    @Html.RadioButton("ThanhToan", 0) Chưa thanh toán
+                                </div>
+                                <div class="col-3">
+                                    @Html.RadioButton("ThanhToan", 1) Đã thanh toán
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tổng tiền từ:</strong></td>
+                        <td>
+                            <input type="range" id="tongTienMin" name="TongTienMin" class="form-range" min="0" max="500000000" step="1000000"
+                                   value="@ViewBag.TongTienMin" oninput="updateFormattedValues()">
+                            <output id="minOutput">@int.Parse(ViewBag.TongTienMin).ToString("N0")</output>đ
+                        </td>
+                        <td><strong>Đến:</strong></td>
+                        <td>
+                            <input type="range" id="tongTienMax" name="TongTienMax" class="form-range" min="0" max="500000000" step="1000000"
+                                   value="@ViewBag.TongTienMax" oninput="updateFormattedValues()">
+                            <output id="maxOutput">@int.Parse(ViewBag.TongTienMax).ToString("N0")</output>đ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mã nhân viên:</strong></td>
+                        <td>
+                            @Html.TextBox("MaNV", ViewBag.MaNV_Duyet as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                        <td><strong>Địa chỉ:</strong></td>
+                        <td>
+                            @Html.TextBox("DiaChi", ViewBag.DiaChi as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                    </tr>
+                </table>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn" style="background: #fe6161; color: white; margin-right: 5px; border-radius: 5px;">Tìm kiếm</button>
+                    <button type="reset" class="btn" style="background: #fd710d; color: white; border-radius: 5px;" id="reset-button">Nhập lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Phần danh sách đơn hàng -->
+<div class="container">
+    <div class="card shadow-lg pb-4 mt-4" style="max-width: 100%; margin: 0 auto;">
+        <div id="order-list" class="card-header brand-header text-center">
+            Danh sách đơn hàng
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center align-middle">
+                    <thead style="font-weight:bold">
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã đơn</th>
+                            <th>Ngày đặt</th>
+                            <th>Tình trạng</th>
+                            <th>Địa chỉ</th>
+                            <th>Tổng tiền</th>
+                            <th>Khách hàng</th>
+                            <th>Nhân viên</th>
+                            <th>Thanh toán</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var donHang = item.GetType().GetProperty("DonHang").GetValue(item);
+                            var tongTien = item.GetType().GetProperty("TongTien").GetValue(item);
+                            <tr>
+                                <td>@(++i)</td>
+                                <td><strong>@donHang.GetType().GetProperty("MaDDH").GetValue(donHang)</strong></td>
+                                <td>@donHang.GetType().GetProperty("Ngay").GetValue(donHang).ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>
+                                    @{
+                                        int tinhTrang = (int)donHang.GetType().GetProperty("TinhTrang").GetValue(donHang);
+                                        if (tinhTrang == 0)
+                                        {
+                                            tinhtrang = "Chờ xác nhận";
+                                            <span class="badge bg-secondary" style="font-size: 16px">@tinhtrang</span>
+                                        }
+                                        else if (tinhTrang == 1)
+                                        {
+                                            tinhtrang = "Chờ giao hàng";
+                                            <span class="badge bg-warning" style="font-size: 16px">@tinhtrang</span>
+                                        }
+                                        else if (tinhTrang == 2)
+                                        {
+                                            tinhtrang = "Thành công";
+                                            <span class="badge bg-success" style="font-size: 16px">@tinhtrang</span>
+                                        }
+                                        else
+                                        {
+                                            tinhtrang = "Đã hủy";
+                                            <span class="badge bg-danger" style="font-size: 16px">@tinhtrang</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @{
+                                        string diaChi = donHang.GetType().GetProperty("DiaChiNhanHang").GetValue(donHang, null).ToString();
+                                        string diaChiRutGon = "";
+                                        if (diaChi.Length > 30)
+                                        {
+                                            diaChiRutGon = diaChi.Substring(0, 30) + "..."; // Rút gọn địa chỉ nếu quá dài
+                                        }
+                                        else
+                                        {
+                                            diaChiRutGon = diaChi;
+                                        }
+                                    }
+                                    @diaChiRutGon
+                                </td>
+                                <td class="text-end fw-bold" style="color: red">@string.Format("{0:N0} đ", tongTien)</td>
+                                <td>@donHang.GetType().GetProperty("MaKhachHang").GetValue(donHang, null)</td>
+                                <td>@donHang.GetType().GetProperty("MaNhanVien").GetValue(donHang, null)</td>
+                                <td>
+                                    @{
+                                        int thanhToan = (int)donHang.GetType().GetProperty("ThanhToan").GetValue(donHang);
+                                        if (thanhToan == 0)
+                                        {
+                                            <span style="font-size: 16px; color: red">Chưa thanh toán</span>
+                                        }
+                                        else
+                                        {
+                                            <span style="font-size: 16px; color: green">Đã thanh toán</span>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Details", "NV_DonHangs_23TH0014", new { id = donHang.GetType().GetProperty("MaDDH").GetValue(donHang)})"
+                                       class="btn" style="border-radius: 5px; margin-right:5px; background: #fd710d; color: white ">
+                                        Chi tiết
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @{
+            // Giữ lại các giá trị tìm kiếm khi phân trang
+            var routeValues = new System.Web.Routing.RouteValueDictionary();
+            foreach (string key in Request.QueryString.AllKeys)
+            {
+                routeValues[key] = Request.QueryString[key];
+            }
+        }
+        <!-- Hiển thị phân trang -->
+        @{
+            var prevDisabled = Model.PageNumber <= 1 ? "disabled" : "";
+            var nextDisabled = Model.PageNumber >= Model.PageCount ? "disabled" : "";
+        }
+        <div>
+            <nav class="text-center">
+                <ul class="pagination justify-content-center mb-0">
+                    <!-- Nút trước -->
+                    @{
+                        routeValues["page"] = Model.PageNumber - 1;
+                    }
+                    <li class="page-item @prevDisabled">
+                        <a class="page-link" href="@Url.Action("Index", routeValues)">&lt;</a>
+                    </li>
+                    <!-- Hiển thị trang hiện tại và tổng số trang -->
+                    @{
+                        if (@Model.PageCount != 0)
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    @Model.PageNumber / @Model.PageCount
+                                </span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    @Model.PageNumber / @(Model.PageCount + 1)
+                                </span>
+                            </li>
+                        }
+                    }
+                    @{
+                        routeValues["page"] = Model.PageNumber + 1;
+                    }
+                    <!-- Nút sau -->
+                    <li class="page-item @nextDisabled">
+                        <a class="page-link" href="@Url.Action("Index", routeValues)">&gt;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+

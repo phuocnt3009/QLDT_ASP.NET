@@ -1,0 +1,99 @@
+﻿@model QLDT_23TH0014.Models.SanPham
+@{
+    ViewBag.Title = "Thêm sản phẩm";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header brand-header text-center" style="background-color: #fd710d; color: white; font-weight: bold; font-size: 18px;">
+                    Thêm sản phẩm
+                </div>
+                <div class="card-body p-4">
+                    @using (Html.BeginForm("Create_SP", "NV_SanPhams_23TH0014", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <table class="table1" align="center" cellpadding="8">
+                            <tr>
+                                <td><strong>Mã sản phẩm:</strong></td>
+                                <td>
+                                    <input type="text" value="@ViewBag.MaSP" disabled readonly class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tên sản phẩm:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.TenSP, new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Giá bán:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.GiaBan, new { @class = "form-control", type = "number", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mô tả:</strong></td>
+                                <td>
+                                    @Html.TextAreaFor(model => model.Mota, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>RAM:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.Ram, new { @class = "form-control", type = "number", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.Ram, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Dung lượng:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.DungLuong, new { @class = "form-control", type = "number", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.DungLuong, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hệ điều hành:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.HeDieuHanh, new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.HeDieuHanh, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hãng sản xuất:</strong></td>
+                                <td>
+                                    @Html.DropDownList("MaHSX", ViewBag.MaHSX as SelectList, "-- Chọn hãng sản xuất --", new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.MaHSX, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Màu sắc:</strong></td>
+                                <td>
+                                    @Html.DropDownList("MaMau", ViewBag.MaMau as SelectList, "-- Chọn màu sắc --", new { @class = "form-control", required = "required" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ảnh bìa:</strong></td>
+                                <td>
+                                    <input type="file" style="height:30px;" name="Avatar" accept="image/*" required />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group mt-3">
+                            <div class="text-center d-flex justify-content-center gap-2">
+                                <a href="@Url.Action("Index", "NV_SanPhams_23TH0014")" class="btn" style="border-radius: 5px; background: #fe6161; color: white">Quay lại</a>
+                                <input type="submit" value="Thêm" class="btn" style="border-radius: 5px; background: #fd710d; color: white" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

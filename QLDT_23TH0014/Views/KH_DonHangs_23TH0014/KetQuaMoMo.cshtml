@@ -1,0 +1,39 @@
+﻿@model List<QLDT_23TH0014.Models.GioHang_23TH0014>
+
+@{
+    ViewBag.Title = "Kết quả thanh toán MoMo";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+<div class="container">
+    <div class="card shadow-lg pb-4 mt-4" style="max-width: 90%; margin: 0 auto;">
+        <div class="card-header brand-header text-center">
+            Kết quả thanh toán MoMo
+        </div>
+        <div class="card-body">
+            <div class="text-center mt-3">
+                <h4 class="mb-4">
+                    @{
+                        if (@TempData["TB"].ToString().Contains("thành công"))
+                        {
+                            <span style="color: green">@TempData["TB"]</span>
+                        }
+                        else
+                        {
+                            <span style="color: red">@TempData["TB"]</span>
+                            <br />
+                            <span style="color: red">Vui lòng liên hệ bộ phận CSKH để được hỗ trợ!</span>
+                        }
+
+                    }
+                </h4>
+                <div class="text-center d-flex justify-content-center gap-2 gap-2">
+                    <a href="@Url.Action("Index", "KH_DonHangs_23TH0014")" class="btn" style="border-radius: 5px; background: #fe6161; color: white">Danh sách đơn hàng</a>
+                    <a href="@Url.Action("Index", "KH_SanPhams_23TH0014")" class="btn" style="border-radius: 5px; background: #fd710d; color: white;">Tiếp tục mua sắm</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

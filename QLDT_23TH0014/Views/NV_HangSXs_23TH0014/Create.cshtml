@@ -1,0 +1,45 @@
+﻿@model QLDT_23TH0014.Models.HangSanXuat
+@{
+    ViewBag.Title = "Thêm hãng sản xuất";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg" style="border-radius: 10px;">
+                <div class="card-header text-center brand-header">
+                    Thêm hãng sản xuất
+                </div>
+                <div class="card-body p-4">
+                    @using (Html.BeginForm("Create", "NV_HangSXs_23TH0014", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <table class="table1" align="center" cellpadding="8">
+                            <tr>
+                                <td class="fw-bold" style="width: 30%;">Mã hãng:</td>
+                                <td>
+                                    <input type="text" value="@ViewBag.MaHSX" disabled readonly class="form-control" />
+                                    @Html.ValidationMessageFor(model => model.MaHSX, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Tên hãng:</td>
+                                <td>
+                                    @Html.EditorFor(model => model.TenHSX, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                    @Html.ValidationMessageFor(model => model.TenHSX, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="text-center d-flex justify-content-center gap-2 mt-3">
+                            <a href="@Url.Action("Index")" class="btn" style="background: #fd710d; color: white;">Quay lại</a>
+                            <button type="submit" class="btn" style="border-radius: 5px; background: #fe6161; color: white ">Thêm</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

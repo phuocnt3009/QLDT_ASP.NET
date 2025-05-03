@@ -1,0 +1,211 @@
+﻿@model PagedList.IPagedList<dynamic>
+@{
+    ViewBag.Title = "Quản lý người dùng";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    int i = (Model.PageNumber - 1) * Model.PageSize;
+    var use = Session["use"] as QLDT_23TH0014.Models.NguoiDung;
+    <script>
+        // Hàm tự di chuyển đến mục sản phẩm khi người dùng tìm kiếm
+        document.addEventListener("DOMContentLoaded", function () {
+            // Kiểm tra nếu có tham số tìm kiếm trên URL
+            if (window.location.search.length > 0) {
+                setTimeout(() => {
+                    document.getElementById("order-list").scrollIntoView({ behavior: "smooth" });
+                }, 0);
+            }
+        });
+
+        // Hàm reset thông tin các ô tìm kiếm
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("reset-button").addEventListener("click", function (event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định
+
+                // Lấy form
+                let form = document.getElementById("search-form");
+
+                // Xóa giá trị của tất cả input
+                form.querySelectorAll("input").forEach(input => {
+                    if (input.type === "text") {
+                        input.value = "";
+                    }
+                    if (input.type === "radio") {
+                        input.checked = false;
+                    }
+                });
+
+                // Xóa các giá trị trong URL (nếu có)
+                window.history.replaceState(null, null, window.location.pathname);
+
+            });
+        });
+    </script>
+}
+<!-- Phần tìm kiếm người dùng -->
+<div class="container mt-4 mx-auto" style="width: 830px">
+    <div class="card shadow-lg pb-4">
+        <div class="card-header brand-header text-center">
+            Tìm kiếm người dùng
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Index", "NV_TaiKhoans_23TH0014", FormMethod.Get, new { id = "search-form" }))
+            {
+                <table class="table1" align="center" cellpadding="8" style="width: 100%;">
+                    <tr>
+                        <td><strong>Mã người dùng:</strong></td>
+                        <td>
+                            @Html.TextBox("MaNguoiDung", ViewBag.MaNguoiDung as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                        <td><strong>Họ tên:</strong></td>
+                        <td>
+                            @Html.TextBox("HoTen", ViewBag.HoTen as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>SĐT:</strong></td>
+                        <td>
+                            @Html.TextBox("SDT", ViewBag.SDT as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                        <td><strong>Email:</strong></td>
+                        <td>
+                            @Html.TextBox("Email", ViewBag.Email as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Giới tính:</strong></td>
+                        <td>
+                            @Html.RadioButton("GioiTinh", true) Nam&nbsp;
+                            @Html.RadioButton("GioiTinh", false) Nữ
+                        </td>
+                        <td><strong>Vai trò:</strong></td>
+                        <td>
+                            @Html.RadioButton("VaiTro", "NV") Nhân viên&nbsp;
+                            @Html.RadioButton("VaiTro", "KH") Khách hàng
+                        </td>
+                    </tr>
+                </table>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn" style="background: #fe6161; color: white; margin-right: 5px; border-radius: 5px;">Tìm kiếm</button>
+                    <button type="reset" class="btn" style="background: #fd710d; color: white; border-radius: 5px;" id="reset-button">Nhập lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Phần danh sách người dùng -->
+<div class="container mt-4">
+    <div class="card shadow-lg pb-4">
+        <div id="order-list" class="card-header brand-header text-center">
+            Danh sách người dùng
+        </div>
+        <div class="card-body">
+            @if (use.VaiTro == "AD")
+            {
+                <div class="text-end mb-3">
+                    <a href="@Url.Action("Create")" class="btn" style="background: #fe6161; color: white; border-radius: 5px;">Thêm mới</a>
+                </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center align-middle">
+                    <thead class="fw-bold">
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã người dùng</th>
+                            <th>Họ tên</th>
+                            <th>Giới tính</th>
+                            <th>SĐT</th>
+                            <th>Email</th>
+                            <th>Ảnh đại diện</th>
+                            <th>Vai trò</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            string gioiTinh = (item.GioiTinh == true) ? "Nam" : "Nữ";
+                            string vaiTro = item.VaiTro == "KH" ? "Khách hàng" :
+                                            item.VaiTro == "NV" ? "Nhân viên" : "Admin";
+                            <tr>
+                                <td>@(++i)</td>
+                                <td>@item.MaNguoiDung</td>
+                                <td>@item.HoTen</td>
+                                <td>@gioiTinh</td>
+                                <td>@item.SDT</td>
+                                <td>@item.Email</td>
+                                <td>
+                                    <img src="~/Images/User/@item.AnhDaiDien" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+                                </td>
+                                <td>@vaiTro</td>
+                                <td>
+                                    <a href="@Url.Action("Details", new { id = item.MaNguoiDung })"
+                                       class="btn" style="border-radius: 5px; color: white; background: #fd710d; margin-right: 5px">Xem</a>
+                                    @if (use.VaiTro == "AD")
+                                    {
+                                        <a href="@Url.Action("Delete", new { id = item.MaNguoiDung })"
+                                           class="btn btn-danger" style="border-radius: 5px;">Xóa</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Phân trang -->
+        @{
+            var routeValues = new System.Web.Routing.RouteValueDictionary();
+            foreach (string key in Request.QueryString.AllKeys)
+            {
+                routeValues[key] = Request.QueryString[key];
+            }
+
+            var prevDisabled = Model.PageNumber <= 1 ? "disabled" : "";
+            var nextDisabled = Model.PageNumber >= Model.PageCount ? "disabled" : "";
+        }
+        <div>
+            <nav class="text-center">
+                <ul class="pagination justify-content-center mb-0">
+                    <!-- Nút trước -->
+                    @{
+                        routeValues["page"] = Model.PageNumber - 1;
+                    }
+                    <li class="page-item @prevDisabled">
+                        <a class="page-link" href="@Url.Action("Index", routeValues)">&lt;</a>
+                    </li>
+                    <!-- Hiển thị trang hiện tại và tổng số trang -->
+                    @{
+                        if (@Model.PageCount != 0)
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    @Model.PageNumber / @Model.PageCount
+                                </span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    @Model.PageNumber / @(Model.PageCount + 1)
+                                </span>
+                            </li>
+                        }
+                    }
+                    <!-- Nút sau -->
+                    @{
+                        routeValues["page"] = Model.PageNumber + 1;
+                    }
+                    <li class="page-item @nextDisabled">
+                        <a class="page-link" href="@Url.Action("Index", routeValues)">&gt;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="text-end" style="margin-right: 26px">
+            <a href="@Url.Action("Index", "NV_SanPhams_23TH0014")">Về trang chủ</a>
+        </div>
+    </div>
+</div>

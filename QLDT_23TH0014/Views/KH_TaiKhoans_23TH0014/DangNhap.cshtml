@@ -1,0 +1,61 @@
+﻿@model QLDT_23TH0014.Models.NguoiDung
+@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Banner -->
+        <div class="col-md-7 mb-4">
+            <div class="h-100">
+                <img src="~/Images/Banner/banner.jpg" class="img-fluid w-100 h-100 object-fit-cover" />
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <!-- Form đăng nhập -->
+        <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="card shadow-lg" style="width: 100%;  border-radius: 10px;">
+                <div class="card-header brand-header text-center">
+                    Đăng nhập
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.TB != null)
+                    {
+                        <div class="alert alert-danger" style="text-align: center">@ViewBag.TB</div>;
+                    }
+
+                    @using (Html.BeginForm("DangNhap", "KH_TaiKhoans_23TH0014", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <table class="table1" align="center" cellpadding="8">
+                            <tr>
+                                <td><strong>Email:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Nhập email", style = "border-radius: 5px; width: 100%;" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mật khẩu:</strong></td>
+                                <td>
+                                    @Html.PasswordFor(model => model.MatKhau, new { @class = "form-control", placeholder = "Nhập mật khẩu", style = "border-radius: 5px; width: 100%;" })
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group mt-3">
+                            <div class="text-center d-flex justify-content-center gap-2">
+                                <a href="@Url.Action("Create", "KH_TaiKhoans_23TH0014")" class="btn" style="border-radius: 5px; background: #fd710d; color: white">
+                                    Đăng ký
+                                </a>
+                                <input type="submit" value="Đăng nhập" class="btn" style="border-radius: 5px; background: #fe6161; color: white" />
+                            </div>
+                        </div>
+                        <div class="text-center d-flex justify-content-center mt-3">
+                            <a href="@Url.Action("QuenMatKhau", "KH_TaiKhoans_23TH0014")">Quên mật khẩu?</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

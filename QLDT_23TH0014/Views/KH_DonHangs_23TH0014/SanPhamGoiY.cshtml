@@ -1,0 +1,28 @@
+﻿@model IEnumerable<object>
+<link href="~/Content/Style.css" rel="stylesheet" />
+<div class="container">
+    <div class="card shadow-lg pb-4 mt-4" style="max-width: 90%; margin: 0 auto;">
+        <div class="card-header brand-header text-center">
+            Gợi ý dành cho bạn
+        </div>
+        <div class="card-body">
+            <div class="product-container">
+                @foreach (var item in Model)
+                {
+                    var maSP = item.GetType().GetProperty("MaSP").GetValue(item);
+                    var tenSP = item.GetType().GetProperty("TenSanPham").GetValue(item);
+                    var giaBan = item.GetType().GetProperty("GiaBan").GetValue(item);
+                    var anhBia = item.GetType().GetProperty("AnhBia").GetValue(item);
+                    <div class="product-card">
+                        <a class="product-link" href="@Url.Action("Details", "KH_SanPhams_23TH0014", new { id = maSP })">
+                            <img src="~/Images/SanPham/@anhBia" class="product-image" />
+                            <h3>@tenSP</h3>
+                            <p class="price">@string.Format("{0:N0} đ", giaBan)</p>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

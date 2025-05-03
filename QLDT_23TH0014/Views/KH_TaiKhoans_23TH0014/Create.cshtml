@@ -1,0 +1,123 @@
+﻿@model QLDT_23TH0014.Models.NguoiDung
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+<div class="container mt-5">
+    <div class="row">
+        <!-- Banner -->
+        <div class="col-md-7 mb-4">
+            <div class="h-100">
+                <img src="~/Images/Banner/banner.jpg" class="img-fluid w-100 h-100 object-fit-cover" />
+            </div>
+        </div>
+        <!-- Form đăng ký -->
+        <div class="col-md-5 d-flex justify-content-center align-items-center">
+            <div class="card shadow-lg" style="width: 100%; border-radius: 10px;">
+                <div class="card-header brand-header text-center">
+                    Đăng ký
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.TB != null)
+                    {
+                        <div class="alert alert-danger" style="text-align: center">@ViewBag.TB</div>
+                    }
+                    @using (Html.BeginForm("Create", "KH_TaiKhoans_23TH0014", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div>
+                            <input type="hidden" value="@ViewBag.MaNguoiDung" disabled readonly class="form-control" />
+                            @Html.ValidationMessageFor(model => model.MaNguoiDung, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            <input type="hidden" value="@ViewBag.VaiTro" disabled readonly class="form-control" />
+                            @Html.ValidationMessageFor(model => model.VaiTro, "", new { @class = "text-danger" })
+                        </div>
+                        <table class="table1" align="center" cellpadding="8">
+                            <tr>
+                                <td><strong>Họ và tên:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control", style = "border-radius: 5px; width: 100%;", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Giới tính:</strong></td>
+                                <td>
+                                    <div class="checkbox">
+                                        Nam @Html.RadioButtonFor(model => model.GioiTinh, "True", new { @checked = "checked" }) &nbsp;
+                                        Nữ @Html.RadioButtonFor(model => model.GioiTinh, "False")
+                                        @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Số điện thoại:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.SDT, new
+                                    {
+                                        @class = "form-control",
+                                        style = "border-radius: 5px; width: 100%;",
+                                        required = "required",
+                                        pattern = @"^\d{10}$",
+                                        title = "Số điện thoại phải có 10 chữ số."
+                                    })
+                                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.Email, new
+                                    {
+                                        @class = "form-control",
+                                        style = "border-radius: 5px; width: 100%;",
+                                        required = "required",
+                                    })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mật khẩu:</strong></td>
+                                <td>
+                                    @Html.PasswordFor(model => model.MatKhau, new
+                                    {
+                                        @class = "form-control",
+                                        style = "border-radius: 5px; width: 100%;",
+                                        required = "required",
+                                        minlength = "6",
+                                        title = "Mật khẩu phải có ít nhất 6 ký tự."
+                                    })
+                                    @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Địa chỉ:</strong></td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control", style = "border-radius: 5px; width: 100%;" })
+                                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ảnh đại diện:</strong></td>
+                                <td>
+                                    <input type="file" style="height:30px;" name="Avatar" accept="image/*" required />
+                                    @Html.ValidationMessageFor(model => model.AnhDaiDien, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group mt-3">
+                            <div class="text-center d-flex justify-content-center gap-2">
+                                <a href="@Url.Action("DangNhap", "KH_TaiKhoans_23TH0014")" class="btn" style="border-radius: 5px; background: #fe6161; color: white">
+                                    Đăng nhập
+                                </a>
+                                <input type="submit" value="Đăng ký" class="btn" style="border-radius: 5px; background: #fd710d; color: white" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

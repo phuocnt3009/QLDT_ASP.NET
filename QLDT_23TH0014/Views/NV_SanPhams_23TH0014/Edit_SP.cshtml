@@ -1,0 +1,89 @@
+﻿@model QLDT_23TH0014.Models.SanPham
+
+@{
+    ViewBag.Title = "Chỉnh sửa sản phẩm";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg pb-4" style="max-width: 70%; margin: 0 auto;">
+        <div class="card-header brand-header text-center" style="margin-bottom: 20px;">
+            Chỉnh sửa thông tin sản phẩm
+        </div>
+        <div class="row p-4">
+            <div class="col-md-8 m-auto">
+                @using (Html.BeginForm("Edit_SP", "NV_SanPhams_23TH0014", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.MaSP)
+
+                    <table class="table1" align="center" cellpadding="8">
+                        <tr>
+                            <td><label class="form-label"><strong>Mã sản phẩm:</strong></label></td>
+                            <td>
+                                <input type="text" class="form-control" value="@Model.MaSP" disabled readonly />
+                                @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label"><strong>Tên sản phẩm:</strong></label></td>
+                            <td>
+                                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label"><strong>Giá bán:</strong></label></td>
+                            <td>
+                                @Html.EditorFor(model => model.GiaBan, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label"><strong>Mô tả:</strong></label></td>
+                            <td>
+                                @Html.EditorFor(model => model.Mota, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Mota, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label"><strong>RAM:</strong></label></td>
+                            <td>
+                                @Html.EditorFor(model => model.Ram, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.Ram, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label"><strong>Dung lượng:</strong></label></td>
+                            <td>
+                                @Html.EditorFor(model => model.DungLuong, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.DungLuong, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label"><strong>Hệ điều hành:</strong></label></td>
+                            <td>
+                                @Html.EditorFor(model => model.HeDieuHanh, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                @Html.ValidationMessageFor(model => model.HeDieuHanh, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label class="form-label"><strong>Hãng:</strong></label></td>
+                            <td>
+                                @Html.DropDownList("MaHSX", null, htmlAttributes: new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessageFor(model => model.MaHSX, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="d-flex justify-content-center gap-2 mt-4 mb-3">
+                        <a href="@Url.Action("Details", "NV_SanPhams_23TH0014", new { id = Model.MaSP })"
+                           class="btn" style="border-radius: 5px; background: #fd710d; color: white">Quay lại</a>
+                        <button type="submit" class="btn" style="margin-right: 15px; border-radius: 5px; background: #fe6161; color: white">Lưu</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

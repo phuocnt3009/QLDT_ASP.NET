@@ -1,0 +1,472 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\controllers\\khachhang\\kh_taikhoans_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\controllers\\khachhang\\kh_taikhoans_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|c:\\users\\asus\\desktop\\qldt_23th0014_github\\qldt_23th0014\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\controllers\\khachhang\\kh_sanphams_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\controllers\\khachhang\\kh_sanphams_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|c:\\users\\asus\\desktop\\qldt_23th0014_github\\qldt_23th0014\\controllers\\khachhang\\kh_donhangs_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\controllers\\khachhang\\kh_donhangs_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\shared\\_layoutnv.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\shared\\_layoutnv.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\shared\\_layoutkh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\shared\\_layoutkh.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_thongkes_23th0014\\doanhthutheoky_nc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_thongkes_23th0014\\doanhthutheoky_nc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_thongkes_23th0014\\sanphambanchay_nc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_thongkes_23th0014\\sanphambanchay_nc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_thongkes_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_thongkes_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\kh_donhangs_23th0014\\dathang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\kh_donhangs_23th0014\\dathang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_donhangs_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_donhangs_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\kh_donhangs_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\kh_donhangs_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\kh_donhangs_23th0014\\giohang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\kh_donhangs_23th0014\\giohang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\kh_donhangs_23th0014\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\kh_donhangs_23th0014\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_donhangs_23th0014\\accept.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_donhangs_23th0014\\accept.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_donhangs_23th0014\\complete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_donhangs_23th0014\\complete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_donhangs_23th0014\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_donhangs_23th0014\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_donhangs_23th0014\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_donhangs_23th0014\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\controllers\\nhanvien\\nv_taikhoans_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\controllers\\nhanvien\\nv_taikhoans_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_taikhoans_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_taikhoans_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_sanphams_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_sanphams_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\nv_mausacs_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\nv_mausacs_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\controllers\\nhanvien\\nv_thongkes_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\controllers\\nhanvien\\nv_thongkes_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\controllers\\nhanvien\\nv_sanphams_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\controllers\\nhanvien\\nv_sanphams_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\controllers\\authenticationfilter_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\controllers\\authenticationfilter_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\controllers\\nhanvien\\nv_donhangs_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\controllers\\nhanvien\\nv_donhangs_23th0014controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\qldt_23th0014\\views\\kh_sanphams_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CEF84C8-357E-4863-95F3-11D1EDAE7525}|QLDT_23TH0014\\QLDT_23TH0014.csproj|solutionrelative:qldt_23th0014\\views\\kh_sanphams_23th0014\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Web.config",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Web.config",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Web.config",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Web.config",
+              "RelativeToolTip": "QLDT_23TH0014\\Web.config",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-03T09:01:19.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_LayoutKH.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\Shared\\_LayoutKH.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\Shared\\_LayoutKH.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\Shared\\_LayoutKH.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\Shared\\_LayoutKH.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-10T10:27:55.432Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_LayoutNV.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\Shared\\_LayoutNV.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\Shared\\_LayoutNV.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\Shared\\_LayoutNV.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\Shared\\_LayoutNV.cshtml",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAAAKMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-12T14:29:09.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "KH_DonHangs_23TH0014Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\KhachHang\\KH_DonHangs_23TH0014Controller.cs",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Controllers\\KhachHang\\KH_DonHangs_23TH0014Controller.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\KhachHang\\KH_DonHangs_23TH0014Controller.cs",
+              "RelativeToolTip": "QLDT_23TH0014\\Controllers\\KhachHang\\KH_DonHangs_23TH0014Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-11T04:40:57.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "KH_SanPhams_23TH0014Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\KhachHang\\KH_SanPhams_23TH0014Controller.cs",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Controllers\\KhachHang\\KH_SanPhams_23TH0014Controller.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\KhachHang\\KH_SanPhams_23TH0014Controller.cs",
+              "RelativeToolTip": "QLDT_23TH0014\\Controllers\\KhachHang\\KH_SanPhams_23TH0014Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T04:25:29.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "KH_TaiKhoans_23TH0014Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\KhachHang\\KH_TaiKhoans_23TH0014Controller.cs",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Controllers\\KhachHang\\KH_TaiKhoans_23TH0014Controller.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\KhachHang\\KH_TaiKhoans_23TH0014Controller.cs",
+              "RelativeToolTip": "QLDT_23TH0014\\Controllers\\KhachHang\\KH_TaiKhoans_23TH0014Controller.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAA9wG0AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T13:39:15.987Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DoanhThuTheoKy_NC.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\DoanhThuTheoKy_NC.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\DoanhThuTheoKy_NC.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\DoanhThuTheoKy_NC.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\DoanhThuTheoKy_NC.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAB4AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T06:37:39.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SanPhamBanChay_NC.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\SanPhamBanChay_NC.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\SanPhamBanChay_NC.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\SanPhamBanChay_NC.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\SanPhamBanChay_NC.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T03:10:26.89Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\Index.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_ThongKes_23TH0014\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANwAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T06:29:23.536Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DatHang.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\DatHang.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\DatHang.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\DatHang.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\DatHang.cshtml",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFMAAABhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-12T08:57:05.033Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Index.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T18:15:41.723Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\Index.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\Index.cshtml",
+              "ViewState": "AgIAACABAAAAAAAAAAAAAMkAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T03:55:39.544Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GioHang.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\GioHang.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\GioHang.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\GioHang.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\GioHang.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T08:32:26.861Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\Details.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\Details.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\Details.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\KH_DonHangs_23TH0014\\Details.cshtml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAAAE8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T08:32:12.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Complete.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Complete.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Complete.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Complete.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Complete.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFkAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-29T04:03:35.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Delete.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Delete.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Delete.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAFQAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-13T17:57:05.251Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Details.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Details.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Details.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Details.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-13T17:50:42.96Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "NV_TaiKhoans_23TH0014Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\NhanVien\\NV_TaiKhoans_23TH0014Controller.cs",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Controllers\\NhanVien\\NV_TaiKhoans_23TH0014Controller.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\NhanVien\\NV_TaiKhoans_23TH0014Controller.cs",
+              "RelativeToolTip": "QLDT_23TH0014\\Controllers\\NhanVien\\NV_TaiKhoans_23TH0014Controller.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAYwLYAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T12:30:41.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Accept.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Accept.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Accept.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Accept.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_DonHangs_23TH0014\\Accept.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-13T17:59:49.145Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_TaiKhoans_23TH0014\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_TaiKhoans_23TH0014\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_TaiKhoans_23TH0014\\Index.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_TaiKhoans_23TH0014\\Index.cshtml",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAHQAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T07:49:18.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_SanPhams_23TH0014\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_SanPhams_23TH0014\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_SanPhams_23TH0014\\Index.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_SanPhams_23TH0014\\Index.cshtml",
+              "ViewState": "AgIAALoAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-12T14:35:29.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_MauSacs_23TH0014\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\NV_MauSacs_23TH0014\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\NV_MauSacs_23TH0014\\Index.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\NV_MauSacs_23TH0014\\Index.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAABoAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-02-13T12:07:08.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T07:36:56.293Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "NV_ThongKes_23TH0014Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\NhanVien\\NV_ThongKes_23TH0014Controller.cs",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Controllers\\NhanVien\\NV_ThongKes_23TH0014Controller.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\NhanVien\\NV_ThongKes_23TH0014Controller.cs",
+              "RelativeToolTip": "QLDT_23TH0014\\Controllers\\NhanVien\\NV_ThongKes_23TH0014Controller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T00:54:24.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "NV_SanPhams_23TH0014Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\NhanVien\\NV_SanPhams_23TH0014Controller.cs",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Controllers\\NhanVien\\NV_SanPhams_23TH0014Controller.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\NhanVien\\NV_SanPhams_23TH0014Controller.cs",
+              "RelativeToolTip": "QLDT_23TH0014\\Controllers\\NhanVien\\NV_SanPhams_23TH0014Controller.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-12T14:34:07.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AuthenticationFilter_23TH0014Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\AuthenticationFilter_23TH0014Controller.cs",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Controllers\\AuthenticationFilter_23TH0014Controller.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\AuthenticationFilter_23TH0014Controller.cs",
+              "RelativeToolTip": "QLDT_23TH0014\\Controllers\\AuthenticationFilter_23TH0014Controller.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAwBYAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-24T18:55:51.489Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "NV_DonHangs_23TH0014Controller.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\NhanVien\\NV_DonHangs_23TH0014Controller.cs",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Controllers\\NhanVien\\NV_DonHangs_23TH0014Controller.cs",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Controllers\\NhanVien\\NV_DonHangs_23TH0014Controller.cs",
+              "RelativeToolTip": "QLDT_23TH0014\\Controllers\\NhanVien\\NV_DonHangs_23TH0014Controller.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAmwMAAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T17:32:04.953Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_SanPhams_23TH0014\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLDT_23TH0014\\Views\\KH_SanPhams_23TH0014\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\QLDT_23TH0014_Github\\QLDT_23TH0014\\Views\\KH_SanPhams_23TH0014\\Index.cshtml",
+              "RelativeToolTip": "QLDT_23TH0014\\Views\\KH_SanPhams_23TH0014\\Index.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-03T03:50:06.933Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

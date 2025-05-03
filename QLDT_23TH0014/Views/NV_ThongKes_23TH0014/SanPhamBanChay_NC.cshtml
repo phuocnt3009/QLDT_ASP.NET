@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Thống kê sản phẩm bán chạy";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("reset-button").addEventListener("click", function (event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định
+
+                let form = document.getElementById("search-form");
+
+                // Reset các input
+                form.querySelectorAll("input").forEach(input => {
+                    if (["text", "date"].includes(input.type)) {
+                        input.value = "";
+                    }
+                    if (["number"].includes(input.type)) {
+                        input.value = 5;
+                    }
+                });
+
+                // Reset Dropdown hãng sản xuất
+                let dropdown = form.querySelector("select[name='maHSX']");
+                if (dropdown) dropdown.selectedIndex = 0;
+
+                // Reset kiểu thống kê
+                let kieuTK = form.querySelector("select[name='kieuThongKe']");
+                if (kieuTK) kieuTK.selectedIndex = 0;
+
+                // Xóa URL query string (tùy chọn)
+                window.history.replaceState(null, null, window.location.pathname);
+            });
+        });
+
+        // Vẽ biểu đồ
+        const spLabels = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.TopSanPhamLabels));
+        const spData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.TopSanPhamData));
+        const ctxSP = document.getElementById('spChart').getContext('2d');
+        new Chart(ctxSP, {
+            type: 'bar',
+            data: {
+                labels: spLabels,
+                datasets: [{
+                    label: '@(ViewBag.KieuThongKe? "Doanh số đặt mua (VNĐ)" : "Số lượng đặt mua")',
+                    data: spData,
+                    backgroundColor: '#fd710d'
+                }]
+            }
+        });
+    </script>
+}
+<div class="card shadow-lg pb-4">
+    <div class="card-header brand-header text-center">Thống kê sản phẩm bán chạy</div>
+    <div class="card-body">
+        @using (Html.BeginForm("SanPhamBanChay_NC", "NV_ThongKes_23TH0014", FormMethod.Get, new { @class = "row g-3 mb-4", id = "search-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Từ ngày</label>
+                @Html.TextBox("tuNgay", ViewBag.TuNgay as string, new { type = "date", @class = "form-control", style = "width: 100%;" })
+            </div>
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Đến ngày</label>
+                @Html.TextBox("denNgay", ViewBag.DenNgay as string, new { type = "date", @class = "form-control", style = "width: 100%;" })
+            </div>
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Hãng sản xuất</label>
+                @Html.DropDownList("maHSX", (SelectList)ViewBag.HangSanXuat, "Tất cả", new { @class = "form-select" })
+            </div>
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Kiểu thống kê</label>
+                <select name='kieuThongKe' class="form-select">
+                    <option value="false" @(ViewBag.KieuThongKe == false ? "selected" : "")>Số lượng</option>
+                    <option value="true" @(ViewBag.KieuThongKe == true ? "selected" : "")>Doanh thu</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Số lượng sản phẩm</label>
+                @Html.TextBox("sl", ViewBag.SoLuong as string ?? "5", new { type = "number", min = 1, max = 10, @class = "form-control", style = "width: 100%;" })
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="reset" class="btn me-3" style="background: #fd710d; color: white" id="reset-button">Nhập lại</button>
+                <button type="submit" class="btn" style="background: #fe6161; color: white;">Thống kê</button>
+            </div>
+        }
+        <canvas id="spChart"></canvas>
+        <div style="text-align: right" class="pe-2 pt-2"><a href="@Url.Action("Index", "NV_ThongKes_23TH0014")">Quay lại</a></div>
+    </div>
+</div>
+
+

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<QLDT_23TH0014.Models.ChiTietSanPham>
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    var sanPham = Model.FirstOrDefault()?.SanPham;
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    var use = Session["use"] as QLDT_23TH0014.Models.NguoiDung;
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Lấy tất cả các nút màu và hình ảnh sản phẩm
+        let buttons = document.querySelectorAll(".color-btn");
+        let image = document.getElementById("product-image");
+
+        // Chọn màu đầu tiên mặc định nếu chưa có màu nào được chọn
+        let defaultColor = buttons[0]; 
+        let newImage = defaultColor.getAttribute("data-image");
+        image.src = "/Images/SanPham/" + newImage;
+        defaultColor.classList.add("active"); // Thêm class active vào nút màu đầu tiên
+
+        // Xử lý sự kiện khi người dùng chọn màu
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                let newImage = this.getAttribute("data-image");
+                image.src = "/Images/SanPham/" + newImage;
+
+                // Xóa class 'active' khỏi tất cả các nút màu
+                buttons.forEach(btn => btn.classList.remove("active"));
+
+                // Thêm class 'active' vào nút đang được chọn
+                this.classList.add("active");
+            });
+        });
+
+        // Sửa màu sản phẩm
+        document.getElementById("SuaAnh").addEventListener("click", function () {
+            let color = document.querySelector(".color-btn.active");
+            let maMau = color ? color.getAttribute("data-maMau") : buttons[0].getAttribute("data-maMau"); // Lấy mã màu
+            let maSP = '@sanPham.MaSP'; // Lấy mã sản phẩm 
+            window.location.href = '@Url.Action("Edit_Anh", "NV_SanPhams_23TH0014", new { id = "__maSP__", maMau = "__maMau__" })'
+                .replace('__maSP__', maSP)  // Thay __maSP__ bằng giá trị maSP
+                .replace('__maMau__', maMau); // Thay __maMau__ bằng giá trị maMau
+        });
+    });
+    </script>
+
+}
+<div class="container mt-4">
+    <div class="card shadow-lg pb-4" style="max-width: 90%; margin: 0 auto;">
+        <div class="card-header brand-header" style="text-align: center; margin-bottom: 20px">Chi tiết sản phẩm</div>
+        <div class="row" style="padding-right: 30px">
+            <!-- Hình ảnh sản phẩm -->
+            <div class="col-md-6 text-center">
+                <div class="d-flex mt-5 justify-content-center">
+                    <img id="product-image" src="~/Images/SanPham/@(Model.First().AnhBia)" alt="@sanPham.TenSP" class="img-fluid" style="width: 300px; height: 300px;">
+                </div>
+                <h3 class="mt-3" style="font-size: 20px">Chọn màu sắc:</h3>
+                <div class="color-options d-flex justify-content-center">
+                    @foreach (var item in Model)
+                    {
+                        <button class="btn btn-outline-dark m-1 color-btn" data-maMau="@item.MaMau" data-image="@item.AnhBia" style="width: 12%">
+                            @item.MauSac.TenMau
+                        </button>
+                    }
+                </div>
+            </div>
+            <!-- Thông tin sản phẩm -->
+            <div class="col-md-6">
+                <h2 class="text-center">@sanPham.TenSP</h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="font-size: 18px"><strong>Mã sản phẩm:</strong> @sanPham.MaSP</li>
+                    <li class="list-group-item" style="font-size: 18px"><strong>Hãng:</strong> @sanPham.HangSanXuat.TenHSX</li>
+                    <li class="list-group-item" style="font-size: 18px"><strong>Giá bán:</strong> <span class="price" style="font-size: 18px">@sanPham.GiaBan.ToString("N0") đ</span></li>
+                    <li class="list-group-item" style="font-size: 18px"><strong>RAM:</strong> @sanPham.Ram GB</li>
+                    <li class="list-group-item" style="font-size: 18px"><strong>Dung lượng:</strong> @sanPham.DungLuong GB</li>
+                    <li class="list-group-item" style="font-size: 18px"><strong>Hệ điều hành:</strong> @sanPham.HeDieuHanh</li>
+                    <li class="list-group-item" style="font-size: 18px"><strong>Mô tả:</strong> @sanPham.Mota</li>
+                </ul>
+                <div class="d-flex justify-content-center gap-2 mt-4 mb-3">
+                    @if (use.VaiTro == "AD")
+                    {
+                        <a href="@Url.Action("Edit_SP", "NV_SanPhams_23TH0014", new { id = sanPham.MaSP})" class="btn" style="background: #fd710d; color: white;">Sửa thông tin</a>
+                        <button id="SuaAnh" class="btn" style="background: #fe6161; color:white;">Sửa ảnh</button>
+                    }
+                </div>
+            </div>
+            <div class="text-end">
+                <a href="@Url.Action("Index", "NV_SanPhams_23TH0014")">Về trang chủ</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

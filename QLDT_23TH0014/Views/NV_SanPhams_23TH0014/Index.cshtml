@@ -1,0 +1,281 @@
+﻿@model PagedList.IPagedList<IGrouping<QLDT_23TH0014.Models.SanPham, QLDT_23TH0014.Models.ChiTietSanPham>>
+@{
+    ViewBag.Title = "Trang chủ - Quản lý sản phẩm";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    int i = (Model.PageNumber - 1) * Model.PageSize;
+    var use = Session["use"] as QLDT_23TH0014.Models.NguoiDung;
+    <script>
+    // Hàm tự di chuyển đến mục sản phẩm khi người dùng tìm kiếm
+    document.addEventListener("DOMContentLoaded", function () {
+        // Kiểm tra nếu có tham số tìm kiếm trên URL
+        if (window.location.search.length > 0) {
+            setTimeout(() => {
+                document.getElementById("product-list").scrollIntoView({ behavior: "smooth" });
+            }, 0);
+        }
+    });
+
+    // Hàm định dạng số
+    function formatNumber(n) {
+        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    // Hàm reset thông tin các ô tìm kiếm
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("reset-button").addEventListener("click", function (event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định
+
+            // Lấy form
+            let form = document.getElementById("search-form");
+
+            // Xóa giá trị của tất cả input
+            form.querySelectorAll("input").forEach(input => {
+                if (input.type === "text" || input.type === "number") {
+                    input.value = "";
+                }
+                if (input.type === "checkbox") {
+                    input.checked = false;
+                }
+                if (input.id === "gbMin") {
+                    input.value = "0";
+                    document.getElementById("minOutput").textContent = formatNumber(0);
+                }
+                if (input.id === "gbMax") {
+                    input.value = "70000000";
+                    document.getElementById("maxOutput").textContent = formatNumber(70000000);
+                }
+            });
+
+            // Reset DropdownList (Hãng sản xuất)
+            let dropdown = document.querySelector("select[name='MaHSX']");
+            if (dropdown) {
+                dropdown.selectedIndex = 0; // Chọn lại "Tất cả"
+            }
+
+            // Xóa các giá trị trong URL (nếu có)
+            window.history.replaceState(null, null, window.location.pathname);
+
+        });
+    });
+
+    // Hàm cập nhật giá trị khi người dùng kéo thanh giá
+    function updateFormattedValues() {
+        const min = document.getElementById("gbMin").value;
+        const max = document.getElementById("gbMax").value;
+
+        document.getElementById("minOutput").textContent = formatNumber(min);
+        document.getElementById("maxOutput").textContent = formatNumber(max);
+    }
+    </script>
+}
+<!-- Phần tìm kiếm-->
+<div class="container mt-4 mx-auto" style="width: 800px">
+    <div class="card shadow-lg pb-4">
+        <div class="card-header brand-header text-center">
+            Tìm kiếm sản phẩm
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Index", "NV_SanPhams_23TH0014", FormMethod.Get, new { id = "search-form" }))
+            {
+                @Html.AntiForgeryToken()
+                <table class="table1" align="center" cellpadding="8" style="width: 100%;">
+                    <tr>
+                        <td><strong>Mã sản phẩm:</strong></td>
+                        <td>
+                            @Html.TextBox("MaSP", ViewBag.MaSP as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                        <td><strong>Tên sản phẩm:</strong></td>
+                        <td>
+                            @Html.TextBox("TenSP", ViewBag.TenSP as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Giá thấp nhất:</strong></td>
+                        <td>
+                            <input type="range" id="gbMin" name="GBMin" class="form-range" min="0" max="70000000" step="1000000"
+                                   value="@ViewBag.GBMin" oninput="updateFormattedValues()">
+                            <output id="minOutput">@int.Parse(ViewBag.GBMin).ToString("N0")</output>đ
+                        </td>
+                        <td><strong>Giá cao nhất:</strong></td>
+                        <td>
+                            <input type="range" id="gbMax" name="GBMax" class="form-range" min="0" max="70000000" step="1000000"
+                                   value="@ViewBag.GBMax" oninput="updateFormattedValues()">
+                            <output id="maxOutput">@int.Parse(ViewBag.GBMax).ToString("N0")</output>đ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>RAM:</strong></td>
+                        <td colspan="3">
+                            @{
+                                var ramOptions = new List<int> { 4, 6, 8, 12 };
+                                string[] selectedRams = ViewBag.Ram;
+                            }
+                            @foreach (var ram in ramOptions)
+                            {
+                                <div style="display: inline-block; width: 90px">
+                                    <input class="form-check-input" type="checkbox" name="Ram" value="@ram" id="ram_@ram"
+                                           @(selectedRams.Contains(ram.ToString()) ? "checked" : "")
+                                           style="transform: scale(1.3); margin-right: 5px" />
+                                    <label for="ram_@ram">@ram GB</label>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dung lượng:</strong></td>
+                        <td colspan="3">
+                            @{
+                                var dungLuongOptions = new List<int> { 64, 128, 256, 512 };
+                                string[] selectedDungLuong = ViewBag.DungLuong;
+                            }
+                            @foreach (var dl in dungLuongOptions)
+                            {
+                                <div style="display: inline-block; width: 90px">
+                                    <input class="form-check-input" type="checkbox" name="DungLuong" value="@dl" id="dl_@dl"
+                                           @(selectedDungLuong.Contains(dl.ToString()) ? "checked" : "")
+                                           style="transform: scale(1.3); margin-right: 5px" />
+                                    <label for="dl_@dl">@dl GB</label>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hệ điều hành:</strong></td>
+                        <td>
+                            @Html.TextBox("HDH", ViewBag.HDH as string, new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                        <td><strong>Hãng sản xuất:</strong></td>
+                        <td>
+                            @Html.DropDownList("MaHSX", null, "Tất cả", new { @class = "form-control", style = "width: 100%;" })
+                        </td>
+                    </tr>
+                </table>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn" style="background: #fe6161; color: white; margin-right: 5px; border-radius: 5px;">Tìm kiếm</button>
+                    <button type="reset" class="btn" style="background: #fd710d; color: white; border-radius: 5px;" id="reset-button">Nhập lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Danh mục sản phẩm -->
+<div class="container mt-5">
+    <div class="card shadow-lg pb-4" style="margin: 0 auto;">
+        <div id="product-list" class="card-header brand-header text-center">
+            Danh sách sản phẩm
+        </div>
+        <div class="card-body">
+            @if (use.VaiTro == "AD")
+            {
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="@Url.Action("Create_SP")" class="btn" style="border-radius: 5px; background: #fe6161; color: white">Thêm mới</a>
+                </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center align-middle">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Hình ảnh</th>
+                            <th>Giá bán</th>
+                            <th>Hãng</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var group in Model)
+                        {
+                            var product = group.First().SanPham;
+                            var firstImage = group.First().AnhBia;
+                            <tr>
+                                <td>@(++i)</td>
+                                <td>@product.MaSP</td>
+                                <td>@product.TenSP</td>
+                                <td>
+                                    <img src="~/Images/SanPham/@firstImage" class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
+                                </td>
+                                <td>@product.GiaBan.ToString("N0") đ</td>
+                                <td>@product.HangSanXuat.TenHSX</td>
+                                <td>
+                                    <a href="@Url.Action("Details", "NV_SanPhams_23TH0014", new { id = product.MaSP })" class="btn" style="background: #fd710d; color: white; border-radius: 5px; margin-right: 5px;">Xem</a>
+                                    @if (use.VaiTro == "AD")
+                                    {
+                                        <a href="@Url.Action("Create_Mau", "NV_SanPhams_23TH0014", new { id = product.MaSP })" class="btn btn-warning" style="color: white; border-radius: 5px; margin-right: 5px;">Thêm màu</a>
+                                        <a href="@Url.Action("Delete_SP", "NV_SanPhams_23TH0014", new { id = product.MaSP })" class="btn btn-danger" style="border-radius: 5px;">Xóa</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @{ 
+            // Giữ lại các giá trị tìm kiếm khi phân trang
+            var routeValues = new System.Web.Routing.RouteValueDictionary();
+
+            foreach (string key in Request.QueryString.AllKeys)
+            {
+                string[] values = Request.QueryString.GetValues(key);
+                if (values.Length > 1)
+                {
+                    for (int j = 0; j < values.Length; j++)
+                    {
+                        routeValues.Add($"{key}[{j}]", values[j]);
+                    }
+                }
+                else
+                {
+                    routeValues.Add(key, Request.QueryString[key]);
+                }
+            }
+        }
+        <!-- Hiển thị phân trang -->
+        @{
+            var prevDisabled = Model.PageNumber <= 1 ? "disabled" : "";
+            var nextDisabled = Model.PageNumber >= Model.PageCount ? "disabled" : "";
+        }
+        <div>
+            <nav class="text-center">
+                <ul class="pagination justify-content-center mb-0">
+                    <!-- Nút trước -->
+                    @{
+                        routeValues["page"] = Model.PageNumber - 1;
+                    }
+                    <li class="page-item @prevDisabled">
+                        <a class="page-link" href="@Url.Action("Index", routeValues)">&lt;</a>
+                    </li>
+                    <!-- Hiển thị trang hiện tại và tổng số trang -->
+                    @{
+                        if (@Model.PageCount != 0)
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    @Model.PageNumber / @Model.PageCount
+                                </span>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    @Model.PageNumber / @(Model.PageCount + 1)
+                                </span>
+                            </li>
+                        }
+                    }
+                    @{
+                        routeValues["page"] = Model.PageNumber + 1;
+                    }
+                    <!-- Nút sau -->
+                    <li class="page-item @nextDisabled">
+                        <a class="page-link" href="@Url.Action("Index", routeValues)">&gt;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

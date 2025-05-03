@@ -1,0 +1,168 @@
+﻿@{ var use = Session["use"] as QLDT_23TH0014.Models.NguoiDung; }
+@{
+    try
+    {
+        if (use != null)
+        {
+            ViewBag.NguoiDung = "Xin chào, " + use.HoTen;
+        }
+        else
+        {
+            ViewBag.NguoiDung = "Bạn chưa đăng nhập.";
+        }
+    }
+    catch
+    {
+        ViewBag.NguoiDung = "Bạn chưa đăng nhập.";
+    }
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        /* Header */
+        #header {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, #ff6b6b, #ffb400);
+            color: white;
+            padding: 10px 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Đảm bảo header luôn ở trên cùng */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+        }
+
+            .logo img {
+                height: 60px;
+                width: auto;
+                margin-right: 10px;
+            }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+            .icon i {
+                font-size: 18px;
+            }
+
+            .icon:hover {
+                background: #f7d6d6;
+            }
+        /* Footer */
+        #footer {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(to right, #ff6b6b, #ffb400);
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div id="header">
+        <div class="d-flex">
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" style="font-size: 20px; margin-left: 30px">
+                        <i class="fas fa-bars"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="@Url.Action("Index", "NV_SanPhams_23TH0014")">
+                            <div class="icon" style="color: black">Quản lý sản phẩm</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Index", "NV_HangSXs_23TH0014")">
+                            <div class="icon" style="color: black">Quản lý hãng sản xuất</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Index", "NV_MauSacs_23TH0014")">
+                            <div class="icon" style="color: black">Quản lý màu sắc</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Index", "NV_TaiKhoans_23TH0014")">
+                            <div class="icon" style="color: black">Quản lý người dùng</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Index", "NV_DonHangs_23TH0014")">
+                            <div class="icon" style="color: black">Quản lý đơn hàng</div>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="@Url.Action("Index", "NV_ThongKes_23TH0014")">
+                            <div class="icon" style="color: black">Báo cáo - Thống kê</div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <a href="@Url.Action("Index", "NV_ThongKes_23TH0014")">
+            <div class="logo">
+                <img src="~/Images/Banner/logo.jpg" alt="Logo">
+            </div>
+        </a>
+        <div class="d-flex align-items-center ms-auto nav-icons" style="margin-right: 90px">
+            <div style="padding: 8px 12px; color:white">@ViewBag.NguoiDung</div>
+            <a href="@Url.Action("Details", "NV_TaiKhoans_23TH0014", new { id = use.MaNguoiDung })" class="icon" style="color: white">
+                <i class="fas fa-user"></i> Hồ sơ
+            </a>
+            <a href="@Url.Action("DangXuat", "KH_TaiKhoans_23TH0014")" class="icon" style="color: white">
+                <i class="fas fa-sign-out"></i> Đăng xuất
+            </a>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container body-content">
+        @RenderBody();
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        Copyright &copy; @DateTime.Now.Year - Ego Mobile
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/Assets/dist/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="~/Assets/dist/assets/demo/chart-area-demo.js"></script>
+    <script src="~/Assets/dist/assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    <script src="~/Assets/dist/assets/demo/datatables-demo.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿@model QLDT_23TH0014.Models.HangSanXuat
+@{
+    ViewBag.Title = "Xóa hãng sản xuất";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+<h2 class="text-center fw-bold mt-3 mb-3" style="color:red">Bạn có chắc chắn xóa hãng sản xuất này?</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg" style="border-radius: 10px;">
+                <div class="card-header brand-header text-center">
+                    Thông tin hãng sản xuất
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.TB != null)
+                    {
+                        <div class="alert alert-danger" style="text-align: center">@ViewBag.TB</div>
+                    }
+                    <table class="table1" align="center" cellpadding="8">
+                        <tr>
+                            <td class="fw-bold">Mã hãng:</td>
+                            <td>@Html.DisplayFor(model => model.MaHSX)</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Tên hãng:</td>
+                            <td>@Html.DisplayFor(model => model.TenHSX)</td>
+                        </tr>
+                    </table>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="text-center d-flex justify-content-center gap-2 mt-3">
+                            <a href="@Url.Action("Index")" class="btn" style="background: #fd710d; color: white">Quay lại</a>
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

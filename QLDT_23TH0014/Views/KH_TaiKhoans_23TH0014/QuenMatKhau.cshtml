@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Quên mật khẩu";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div class="card shadow-lg mt-4" style="max-width: 600px; margin: 0 auto;">
+        <div class="card-header brand-header text-center" style="background-color: #ff6b6b; color: white; font-size: 20px;">
+            Khôi phục mật khẩu
+        </div>
+        <div class="card-body">
+            @if (ViewBag.TB != null)
+            {
+                if (ViewBag.TB == "Mật khẩu mới đã được gửi đến email của bạn!")
+                {
+                    <div class="alert alert-success" style="text-align: center">@ViewBag.TB</div>
+                }
+                else
+                {
+                    <div class="alert alert-danger" sstyle="text-align: center">@ViewBag.TB</div>
+                }
+            }
+
+            @using (Html.BeginForm("QuenMatKhau", "KH_TaiKhoans_23TH0014", FormMethod.Post, new { @class = "needs-validation", novalidate = "novalidate" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="d-flex justify-content-center">
+                    <table class="table1" cellpadding="8">
+                        <tr>
+                            <td>
+                                <label for="email" class="form-label fw-bold mb-0">Nhập email của bạn:</label>
+                            </td>
+                            <td>
+                                <input type="email" name="email" class="form-control" required style="min-width: 300px;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center pt-3">
+                                <button type="submit" class="btn" style="border-radius: 5px; background: #fd710d; color: white;">
+                                    Gửi mật khẩu mới
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <a href="@Url.Action("DangNhap", "KH_TaiKhoans_23TH0014")">Quay lại đăng nhập</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+﻿@model IEnumerable<object>
+
+@{
+    ViewBag.Title = "Hủy đơn hàng";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    int index = 0;
+    string thanhtoan = "";
+    string tinhtrang = "";
+    decimal tongTien = Model.Sum(item => Convert.ToDecimal(item.GetType().GetProperty("ThanhTien").GetValue(item)));
+    var maDDH = Model.First().GetType().GetProperty("MaDDH").GetValue(Model.First());
+}
+<h2 class="text-center fw-bold mt-3 mb-3" style="color:red">Bạn có chắc chắn hủy đơn hàng này?</h2>
+<div class="container">
+    <div class="card shadow-lg pb-4 mt-4" style="max-width: 90%; margin: 0 auto;">
+        <div class="card-header brand-header text-center">
+            Chi tiết đơn hàng @maDDH
+        </div>
+        <div class="card-body">
+            <!-- Thông tin đơn hàng -->
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center align-middle">
+                    <thead style="font-weight: bold">
+                        <tr>
+                            <th>STT</th>
+                            <th>Sản Phẩm</th>
+                            <th>Hình Ảnh</th>
+                            <th>Màu Sắc</th>
+                            <th>Số Lượng</th>
+                            <th>Giá Bán</th>
+                            <th>Thành Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var tenSP = item.GetType().GetProperty("TenSP").GetValue(item);
+                            var tenMau = item.GetType().GetProperty("TenMau").GetValue(item);
+                            var soLuong = item.GetType().GetProperty("SoLuong").GetValue(item);
+                            var giaBan = item.GetType().GetProperty("GiaBan").GetValue(item);
+                            var thanhTien = item.GetType().GetProperty("ThanhTien").GetValue(item);
+                            var anhBia = item.GetType().GetProperty("AnhBia").GetValue(item);
+
+                            <tr>
+                                <td>@(++index)</td>
+                                <td><strong>@tenSP</strong></td>
+                                <td>
+                                    <img src="~/Images/SanPham/@anhBia" alt="Ảnh sản phẩm" class="img-thumbnail" style="width: 80px; height: 80px;">
+                                </td>
+                                <td>@tenMau</td>
+                                <td>@soLuong</td>
+                                <td class="text-end">@string.Format("{0:N0} ₫", giaBan)</td>
+                                <td class="text-end fw-bold">@string.Format("{0:N0} ₫", thanhTien)</td>
+                            </tr>
+                        }
+                        <tr class="fw-bold text-success">
+                            <td colspan="6" class="text-end" style="color: red; font-weight:bold; font-size: 20px">Tổng Tiền:</td>
+                            <td class="text-end" style="color: red; font-weight: bold; font-size: 20px">@string.Format("{0:N0} ₫", tongTien)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Địa chỉ nhận hàng, tình trạng đơn hàng và tình trạng thanh toán-->
+            <div class="mb-3 mt-1"><strong>Địa chỉ nhận hàng:</strong> @Model.First().GetType().GetProperty("DiaChiNhanHang").GetValue(Model.First())</div>
+            <div class="mb-3 mt-1">
+                <strong>Tình trạng đơn hàng:</strong>
+                @{
+                    int tinhTrang = (int)Model.First().GetType().GetProperty("TinhTrang").GetValue(Model.First());
+                    if (tinhTrang == 0)
+                    {
+                        tinhtrang = "Đang chờ xác nhận";
+                        <span class="badge bg-secondary" style="font-size: 16px">@tinhtrang</span>
+                    }
+                    else if (tinhTrang == 1)
+                    {
+                        tinhtrang = "Đang chờ giao hàng";
+                        <span class="badge bg-warning" style="font-size: 16px">@tinhtrang</span>
+                    }
+                    else if (tinhTrang == 2)
+                    {
+                        tinhtrang = "Đã thành công";
+                        <span class="badge bg-success" style="font-size: 16px">@tinhtrang</span>
+                    }
+                    else
+                    {
+                        tinhtrang = "Đã hủy";
+                        <span class="badge bg-danger" style="font-size: 16px">@tinhtrang</span>
+                    }
+                }
+            </div>
+            <div class="mt-1">
+                <strong>Tình trạng thanh toán:</strong>
+                @{
+                    int thanhToan = (int)Model.First().GetType().GetProperty("ThanhToan").GetValue(Model.First());
+                    if (thanhToan == 0)
+                    {
+                        thanhtoan = "Chưa thanh toán";
+                        <span style="font-size: 16px; color: red">@thanhtoan</span>
+                    }
+                    else
+                    {
+                        thanhtoan = "Đã thanh toán";
+                        <span style="font-size: 16px; color: green">@thanhtoan</span>
+                    }
+                }
+            </div>
+        </div>
+        <div class="text-center d-flex justify-content-center gap-2 mt-4">
+            <a href="@Url.Action("Index", "KH_DonHangs_23TH0014")" class="btn" style="background: #fd710d; color: white;">Quay lại</a>
+            <form action="@Url.Action("Delete", "KH_DonHangs_23TH0014", new { id = maDDH })" method="post" style="display: inline;">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-danger">Hủy đơn</button>
+            </form>
+        </div>
+    </div>
+</div>

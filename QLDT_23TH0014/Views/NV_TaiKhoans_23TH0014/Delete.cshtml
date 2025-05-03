@@ -1,0 +1,64 @@
+﻿@model QLDT_23TH0014.Models.NguoiDung
+@{
+    ViewBag.Title = "Thông tin người dùng";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    string gtinh = "";
+    string quyen = "";
+}
+<h2 class="text-center fw-bold mt-3 mb-3" style="color:red">Bạn có chắc chắn xóa người dùng này?</h2>
+<div class="container mt-4">
+    <div class="card shadow-lg pb-4" style="max-width: 70%; margin: 0 auto;">
+        <div class="card-header brand-header text-center" style="margin-bottom: 20px;">
+            Thông tin người dùng
+        </div>
+        @if (ViewBag.TB != null)
+        {
+            <div class="alert alert-danger" style="text-align: center">@ViewBag.TB</div>
+        }
+        <div class="row p-4">
+            <!-- Hình ảnh đại diện -->
+            <div class="col-md-4 d-flex flex-column align-items-center justify-content-center">
+                <img src="~/Images/User/@Model.AnhDaiDien" alt="@Model.HoTen"
+                     class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+            </div>
+            <!-- Thông tin người dùng -->
+            <div class="col-md-8">
+                <h2 class="text-center">@Model.HoTen</h2>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="font-size: 18px;"><strong>Mã người dùng:</strong> @Model.MaNguoiDung</li>
+                    <li class="list-group-item" style="font-size: 18px;">
+                        <strong>Giới tính:</strong>
+                        @{if (Model.GioiTinh == true)
+                            { gtinh = "Nam"; }
+                            else
+                            { gtinh = "Nữ"; }
+                        }
+                        @gtinh
+                    </li>
+                    <li class="list-group-item" style="font-size: 18px;"><strong>Số điện thoại:</strong> @Model.SDT</li>
+                    <li class="list-group-item" style="font-size: 18px;"><strong>Email:</strong> @Model.Email</li>
+                    <li class="list-group-item" style="font-size: 18px;"><strong>Địa chỉ:</strong> @Model.DiaChi</li>
+                    <li class="list-group-item" style="font-size: 18px;">
+                        <strong>Vai trò:</strong>
+                        @{if (Model.VaiTro == "KH")
+                            { quyen = "Khách hàng"; }
+                            else if (Model.VaiTro == "NV")
+                            { quyen = "Nhân viên"; }
+                            else
+                            { quyen = "Admin"; }
+                        }
+                        @quyen
+                    </li>
+                </ul>
+                <div class="text-center d-flex justify-content-center gap-2 mt-4">
+                    <a href="@Url.Action("Index", "NV_TaiKhoans_23TH0014")" class="btn" style="background: #fd710d; color: white">Quay lại</a>
+                    <form action="@Url.Action("Delete", "NV_TaiKhoans_23TH0014", new { id = Model.MaNguoiDung })" method="post" style="display: inline;">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

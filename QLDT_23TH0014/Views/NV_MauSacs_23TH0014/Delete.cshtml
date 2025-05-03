@@ -1,0 +1,42 @@
+﻿@model QLDT_23TH0014.Models.MauSac
+@{
+    ViewBag.Title = "Xóa màu sắc";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+<h2 class="text-center fw-bold mt-3 mb-3" style="color:red">Bạn có chắc chắn xóa màu sắc này?</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg" style="border-radius: 10px;">
+                <div class="card-header text-center brand-header">
+                    Thông tin màu sắc
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.TB != null)
+                    {
+                        <div class="alert alert-danger" style="text-align: center">@ViewBag.TB</div>
+                    }
+                    <table class="table1" align="center" cellpadding="8">
+                        <tr>
+                            <td class="fw-bold">Mã màu:</td>
+                            <td>@Html.DisplayFor(model => model.MaMau)</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Tên màu:</td>
+                            <td>@Html.DisplayFor(model => model.TenMau)</td>
+                        </tr>
+                    </table>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="text-center d-flex justify-content-center gap-2 mt-3">
+                            <a href="@Url.Action("Index")" class="btn" style="background: #fd710d; color: white">Quay lại</a>
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

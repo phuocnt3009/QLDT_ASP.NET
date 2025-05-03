@@ -1,0 +1,62 @@
+﻿@model QLDT_23TH0014.Models.ChiTietSanPham
+@{
+    ViewBag.Title = "Thêm màu sản phẩm";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header brand-header text-center" style="background-color: #fd710d; color: white; font-weight: bold; font-size: 18px;">
+                    Thêm màu sản phẩm
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.TB != null)
+                    {
+                        <div class="alert alert-danger" style="text-align: center">@ViewBag.TB</div>
+                    }
+                    @using (Html.BeginForm("Create_Mau", "NV_SanPhams_23TH0014", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <table class="table1" align="center" cellpadding="8">
+                            <tr>
+                                <td><strong>Mã sản phẩm:</strong></td>
+                                <td>
+                                    <input type="text" value="@ViewData["MaSP"]" disabled readonly class="form-control" />
+                                    @Html.Hidden("MaSP", ViewData["MaSP"])
+                                    @Html.ValidationMessageFor(model => model.MaSP, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tên sản phẩm:</strong></td>
+                                <td>
+                                    <input type="text" value="@ViewBag.TenSP" disabled readonly class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Màu sắc:</strong></td>
+                                <td>
+                                    @Html.DropDownList("MaMau", null, "-- Chọn màu sắc --", htmlAttributes: new { @class = "form-control", required = "required" })
+                                    @Html.ValidationMessageFor(model => model.MaMau, "", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ảnh bìa:</strong></td>
+                                <td>
+                                    <input type="file" style="height:30px;" name="Avatar" accept="image/*" required />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-group mt-3">
+                            <div class="text-center d-flex justify-content-center gap-2">
+                                <a href="@Url.Action("Index", "NV_SanPhams_23TH0014")" class="btn" style="border-radius: 5px; background: #fe6161; color: white">Quay lại</a>
+                                <input type="submit" value="Thêm" class="btn" style="border-radius: 5px; background: #fd710d; color: white" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

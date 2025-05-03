@@ -1,0 +1,153 @@
+﻿@{ var use = Session["use"] as QLDT_23TH0014.Models.NguoiDung; }
+@{
+    try
+    {
+        if (use != null)
+        {
+            ViewBag.NguoiDung = "Xin chào, " + use.HoTen;
+        }
+        else
+        {
+            ViewBag.NguoiDung = "Bạn chưa đăng nhập.";
+        }
+    }
+    catch
+    {
+        ViewBag.NguoiDung = "Bạn chưa đăng nhập.";
+    }
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        /* Header */
+        #header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #ff6b6b, #ffb400);
+            color: white;
+            padding: 10px 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000; /* Đảm bảo header luôn ở trên cùng */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-left: 100px;
+        }
+
+            .logo img {
+                height: 60px;
+                width: auto;
+                margin-right: 10px;
+            }
+
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+            .icon i {
+                font-size: 18px;
+            }
+
+            .icon:hover {
+                background: #f7d6d6;
+            }
+        /* Footer */
+        #footer {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(to right, #ff6b6b, #ffb400);
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div id="header">
+        <a href="@Url.Action("Index", "KH_SanPhams_23TH0014")">
+            <div class="logo">
+                <img src="~/Images/Banner/logo.jpg" alt="Logo">
+            </div>
+        </a>
+        @if (use != null)
+        {
+            <div class="nav-icons" style="margin-right: 90px">
+                <div style="padding: 8px 12px; color:white">@ViewBag.NguoiDung</div>
+                <a href="@Url.Action("GioHang", "KH_DonHangs_23TH0014")" class="icon" style="color: white">
+                    <i class="fas fa-shopping-cart"></i> Giỏ hàng(
+                    <span id="SLMatHang">
+                        @if (Session["SLMatHang"] == null)
+                        {
+                            Session["SLMatHang"] = 0;
+                        }
+                        @Session["SLMatHang"]
+                    </span>)
+                </a>
+                <a href="@Url.Action("Index", "KH_DonHangs_23TH0014")" class="icon" style="color: white">
+                    <i class="fas fa-receipt"></i> Đơn hàng
+                </a>
+                <a href="@Url.Action("Details", "KH_TaiKhoans_23TH0014", new { id = use.MaNguoiDung })" class="icon" style="color: white">
+                    <i class="fas fa-user"></i> Hồ sơ
+                </a>
+                <a href="@Url.Action("DangXuat", "KH_TaiKhoans_23TH0014")" class="icon" style="color: white">
+                    <i class="fas fa-sign-out"></i> Đăng xuất
+                </a>
+            </div>
+        }
+        else
+        {
+            <a href="@Url.Action("Index", "KH_SanPhams_23TH0014")">
+                <h2 style="color:white; font-weight: bold">Siêu thị điện thoại Ego Mobile</h2>
+            </a>
+            <div class="nav-icons" style="margin-right: 90px">
+                <a href="@Url.Action("DangNhap", "KH_TaiKhoans_23TH0014")" class="icon" style="color: white">
+                    <i class="fas fa-user"></i> Đăng nhập
+                </a>
+                <a href="@Url.Action("Create", "KH_TaiKhoans_23TH0014")" class="icon" style="color: white">
+                    <i class="fas fa-cog"></i> Đăng ký
+                </a>
+            </div>
+        }
+
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        Copyright &copy; @DateTime.Now.Year - Ego Mobile
+    </div>
+
+</body>
+</html>

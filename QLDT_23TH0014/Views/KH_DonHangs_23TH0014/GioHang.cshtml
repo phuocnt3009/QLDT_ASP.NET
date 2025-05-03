@@ -1,0 +1,169 @@
+﻿@model List<QLDT_23TH0014.Models.GioHang_23TH0014>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    int i = 0;
+    <script>
+    // Hàm cập nhật số lượng sản phẩm trong giỏ hàng
+    function updateQuantity(maSP, maMau, change) {
+        var input = document.getElementById("quantity-" + maSP + "-" + maMau); // Lấy input có id dựa trên mã sản phẩm và mã màu
+        var currentQuantity = parseInt(input.value);
+        var newQuantity = currentQuantity + change; // Tính toán lại số lượng
+
+        if (newQuantity >= 1) {
+            input.value = newQuantity; // Cập nhật giá trị trong input
+
+            // Gọi controller để cập nhật giỏ hàng
+            fetch('@Url.Action("CapNhatSoLuong", "KH_DonHangs_23TH0014")', {
+                method: 'POST',
+                body: JSON.stringify({
+                    maSP: maSP,
+                    maMau: maMau,
+                    soLuong: newQuantity
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                // Cập nhật lại thành tiền sau khi thay đổi số lượng
+                var priceText = document.querySelector(`#thanhTien-${maSP}-${maMau}`).previousElementSibling.innerText; // Lấy giá bán
+                var price = parseFloat(priceText.replace(' đ', '').replace(/\./g, '').trim());
+                var newPrice = newQuantity * price; // Tính lại thành tiền cho sản phẩm
+
+                // Cập nhật lại thành tiền
+                document.getElementById(`thanhTien-${maSP}-${maMau}`).innerText = formatCurrency(newPrice);
+
+                // Cập nhật tổng tiền giỏ hàng
+                updateTotalPrice();
+            })
+        }
+    }
+
+    // Hàm cập nhật tổng tiền giỏ hàng
+    function updateTotalPrice() {
+        var totalPrice = 0;
+        var tableRows = document.getElementsByTagName("tr"); // Lấy tất cả các phần tử <tr> trong trang
+
+
+        for (var i = 1; i < tableRows.length; i++) { // Duyệt qua tất cả các dòng trong bảng (trừ header)
+            var row = tableRows[i];
+            var priceCell = row.querySelector("td:nth-child(7)"); // Lấy cột thứ 7 (Thành tiền)
+
+            // Tính toán lại tổng tiền
+            if (priceCell) {
+                var priceText = priceCell.innerText;
+                var price = parseFloat(priceText.replace(' đ', '').replace(/\./g, '').trim());
+                totalPrice += price;
+            }
+        }
+
+        // Cập nhật tổng tiền giỏ hàng sau khi tính toán xong
+        document.getElementById("totalPrice").innerText = formatCurrency(totalPrice);
+    }
+
+    // Hàm định dạng số tiền theo kiểu "N0", không có phần thập phân
+    function formatCurrency(value) {
+        return value.toLocaleString('vi-VN') + ' đ';
+    }
+
+    // Xóa sản phẩm khỏi giỏ hàng
+        function removeFromCart(maSP, maMau) {
+
+        // Gọi controller để xóa sản phẩm
+        fetch('@Url.Action("XoaKhoiGioHang", "KH_DonHangs_23TH0014")', {
+            method: 'POST',
+            body: JSON.stringify({ maSP: maSP, maMau: maMau }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            location.reload(); // Reload trang giỏ hàng sau khi xóa sản phẩm
+        });
+    }
+    </script>
+}
+<div class="container">
+    <div class="card shadow-lg pb-4 mt-4" style="max-width: 90%; margin: 0 auto;">
+        <div class="card-header brand-header text-center">
+            Giỏ hàng của bạn
+        </div>
+        <div class="card-body">
+            @if (Model == null || Model.Count == 0) // Kiểm tra nếu giỏ hàng trống
+            {
+                <div class="text-center mt-4">
+                    <h4 class="mb-4">Giỏ hàng của bạn đang trống!</h4>
+                    <a href="@Url.Action("Index", "KH_SanPhams_23TH0014")" class="btn" style="background-color: #ff6b6b; color: white; border-radius: 5px;">Mua sắm ngay</a>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered text-center align-middle">
+                        <thead style="font-weight: bold">
+                            <tr>
+                                <th>STT</th>
+                                <th>Sản phẩm</th>
+                                <th>Hình ảnh</th>
+                                <th>Màu sắc</th>
+                                <th>Số lượng</th>
+                                <th>Giá bán</th>
+                                <th>Thành tiền</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(++i)</td>
+                                    <td><strong>@item.TenSP</strong></td>
+                                    <td>
+                                        <img src="~/Images/SanPham/@item.AnhBia" alt="Ảnh sản phẩm" class="img-thumbnail" style="width: 80px; height: 80px; border:none">
+                                    </td>
+                                    <td>@item.TenMau</td>
+                                    <td class="text-center align-middle">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <a class="btn fw-bold" style="font-size: 24px; padding: 10px;" onclick="updateQuantity('@item.MaSP', '@item.MaMau', -1)">-</a>
+                                            <input type="text" class="form-control d-inline" style="width: 50px; height: 50px; text-align: center; " value="@item.SoLuong" readonly id="quantity-@item.MaSP-@item.MaMau">
+                                            <a class="btn fw-bold" style="font-size: 24px; padding: 10px;" onclick="updateQuantity('@item.MaSP', '@item.MaMau', 1)">+</a>
+                                        </div>
+                                    </td>
+                                    <td class="text-end">@item.GiaBan.ToString("N0") đ</td>
+                                    @{
+                                        decimal thanhTien = item.GiaBan * item.SoLuong;
+                                        <td class="text-end fw-bold" id="thanhTien-@item.MaSP-@item.MaMau">@thanhTien.ToString("N0") đ</td>
+                                    }
+                                    <td>
+                                        <button class="btn btn-danger" onclick="removeFromCart('@item.MaSP', '@item.MaMau')" style="width: 70px; border-radius: 5px;">Xóa</button>
+                                    </td>
+                                </tr>
+                            }
+                            @{
+                                decimal tongTien = 0;
+                                foreach (var item in Model)
+                                {
+                                    decimal thanhTien = item.GiaBan * item.SoLuong;
+                                    tongTien += thanhTien;
+                                }
+                                <tr class="fw-bold text-success">
+                                    <td colspan="6" class="text-end" style="color: red; font-weight: bold; font-size: 18px">Tổng Tiền:</td>
+                                    <td class="text-end" style="color: red; font-weight: bold; font-size: 18px" id="totalPrice">@tongTien.ToString("N0") đ</td>
+                                    <td></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center d-flex justify-content-center gap-2 gap-2">
+                    <a href="@Url.Action("Index", "KH_SanPhams_23TH0014")" class="btn" style="border-radius: 5px; background: #fd710d; color: white;">Tiếp tục mua sắm</a>
+                    <a href="@Url.Action("DatHang", "KH_DonHangs_23TH0014")" class="btn" style="border-radius: 5px; background: #fe6161; color: white">Đặt hàng</a>
+                </div>
+            }
+        </div>
+    </div>
+    <!-- Sản phẩm gợi ý -->
+    @Html.Action("SanPhamGoiY", "KH_DonHangs_23TH0014")
+</div>
+

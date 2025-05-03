@@ -1,0 +1,96 @@
+﻿@model List<QLDT_23TH0014.Models.GioHang_23TH0014>
+
+@{
+    ViewBag.Title = "Đặt hàng";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    int i = 0;
+}
+
+<div class="container">
+    <div class="card shadow-lg pb-4 mt-4" style="max-width: 90%; margin: 0 auto;">
+        <div class="card-header brand-header text-center">
+            Xác nhận đặt hàng
+        </div>
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <div class="card-body">
+                @if (ViewBag.TB != null)
+                {
+                    <div class="alert alert-danger" style="text-align: center">@ViewBag.TB</div>
+                }
+                <!-- Thông tin đơn hàng -->
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered text-center align-middle">
+                        <thead style="font-weight: bold">
+                            <tr>
+                                <th>STT</th>
+                                <th>Sản phẩm</th>
+                                <th>Hình ảnh</th>
+                                <th>Màu sắc</th>
+                                <th>Số lượng</th>
+                                <th>Giá bán</th>
+                                <th>Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@(++i)</td>
+                                    <td><strong>@item.TenSP</strong></td>
+                                    <td>
+                                        <img src="~/Images/SanPham/@item.AnhBia" alt="Ảnh sản phẩm" class="img-thumbnail" style="width: 80px; height: 80px; border:none">
+                                    </td>
+                                    <td>@item.TenMau</td>
+                                    <td>@item.SoLuong</td>
+                                    <td class="text-end">@item.GiaBan.ToString("N0") đ</td>
+                                    @{
+                                        decimal thanhTien = item.GiaBan * item.SoLuong;
+                                        <td class="text-end fw-bold" id="thanhTien-@item.MaSP-@item.MaMau">@thanhTien.ToString("N0") đ</td>
+                                    }
+                                </tr>
+                            }
+                            @{
+                                decimal tongTien = 0;
+                                foreach (var item in Model)
+                                {
+                                    decimal thanhTien = item.GiaBan * item.SoLuong;
+                                    tongTien += thanhTien;
+                                }
+                                <tr class="fw-bold text-success">
+                                    <td colspan="6" class="text-end" style="color: red; font-weight: bold; font-size: 18px">Tổng Tiền:</td>
+                                    <td class="text-end" style="color: red; font-weight: bold; font-size: 18px" id="totalPrice">@tongTien.ToString("N0") đ</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Địa chỉ nhận hàng -->
+                <div class="form-group">
+                    <label class="fw-bold mb-3">Địa chỉ nhận hàng</label>
+                    <input type="text" class="form-control" id="diaChiNhanHang" name="diaChi" value="@ViewBag.DiaChiNhanHang" required />
+                </div>
+                <!-- Phương thức thanh toán-->
+                <div class="form-group">
+                    <label class="fw-bold mb-3">Phương thức thanh toán</label>
+                    @Html.DropDownList("thanhToan", new SelectList(
+                             new List<SelectListItem>
+                             {
+                            new SelectListItem { Text = "--Chọn phương thức thanh toán--", Value = "" },
+                            new SelectListItem { Text = "Thanh toán khi nhận hàng (COD)", Value = "0" },
+                            new SelectListItem { Text = "Thanh toán qua MoMo", Value = "1" },
+                            new SelectListItem { Text = "Thanh toán qua ZaloPay", Value = "2" }
+                     }, "Value", "Text"), new { @class = "form-control", required = "required" })
+                </div>
+                <div class="text-center d-flex justify-content-center align-items-center mt-3">
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="@Url.Action("GioHang", "KH_DonHangs_23TH0014")" class="btn" style="border-radius: 5px; background: #fd710d; color: white;">Quay lại</a>
+                        <button type="submit" class="btn" style="border-radius: 5px; background: #fe6161; color: white">Xác nhận đặt hàng</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

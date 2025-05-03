@@ -1,0 +1,237 @@
+﻿@model IEnumerable<IGrouping<QLDT_23TH0014.Models.HangSanXuat, QLDT_23TH0014.Models.ChiTietSanPham>>
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_LayoutKH.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script>
+        // Hàm tự di chuyển đến mục sản phẩm khi người dùng tìm kiếm
+        document.addEventListener("DOMContentLoaded", function () {
+            // Kiểm tra nếu có tham số tìm kiếm trên URL
+            if (window.location.search.length > 0) {
+                setTimeout(() => {
+                    document.getElementById("product-list").scrollIntoView({ behavior: "smooth" });
+                }, 0);
+            }
+        });
+
+        // Hàm định dạng số
+        function formatNumber(n) {
+            return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Hàm reset thông tin các ô tìm kiếm
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("reset-button").addEventListener("click", function (event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định
+
+                // Lấy form
+                let form = document.getElementById("search-form");
+
+                // Xóa giá trị của tất cả input
+                form.querySelectorAll("input").forEach(input => {
+                    if (input.type === "text" || input.type === "number") {
+                        input.value = "";
+                    }
+                    if (input.type === "checkbox") {
+                        input.checked = false;
+                    }
+                    if (input.id === "gbMin") {
+                        input.value = "0";
+                        document.getElementById("minOutput").textContent = formatNumber(0);
+                    }
+                    if (input.id === "gbMax") {
+                        input.value = "70000000";
+                        document.getElementById("maxOutput").textContent = formatNumber(70000000);
+                    }
+                });
+
+                // Reset DropdownList (Hãng sản xuất)
+                let dropdown = document.querySelector("select[name='MaHSX']");
+                if (dropdown) {
+                    dropdown.selectedIndex = 0; // Chọn lại "Tất cả"
+                }
+
+                // Xóa các giá trị trong URL (nếu có)
+                window.history.replaceState(null, null, window.location.pathname);
+    
+            });
+        });
+
+        // Hàm cập nhật giá trị khi người dùng kéo thanh giá
+        function updateFormattedValues() {
+            const min = document.getElementById("gbMin").value;
+            const max = document.getElementById("gbMax").value;
+
+            document.getElementById("minOutput").textContent = formatNumber(min);
+            document.getElementById("maxOutput").textContent = formatNumber(max);
+        }
+    </script>
+}
+<!-- Banner -->
+<div class="container mt-5">
+    <div class="row align-items-stretch">
+        <!-- Ảnh bìa -->
+        <div class="col-md-8">
+            <div class="h-100">
+                <img src="~/Images/Banner/banner.jpg" class="img-fluid w-100 h-100 object-fit-cover" />
+            </div>
+        </div>
+        <!-- Chính sách -->
+        <div class="col-md-4 d-flex flex-column">
+            <div class="p-3 rounded flex-fill" style="background-color: #fac17e;">
+                <h5 class="fw-bold d-flex align-items-center">
+                    <img src="~/Images/Icon/delivery.jpg" class="me-2" width="40" height="40">
+                    Miễn phí vận chuyển
+                </h5>
+                <p class="mb-0">100% đơn hàng đều được miễn phí vận chuyển khi thanh toán trước</p>
+            </div>
+            <div class="p-3 rounded flex-fill mt-3" style="background-color: #f4b3a8;">
+                <h5 class="fw-bold d-flex align-items-center">
+                    <img src="~/Images/Icon/description.jpg" class="me-2" width="40" height="40">
+                    Bảo hành tận tâm
+                </h5>
+                <p class="mb-0">Luôn cam kết mang lại trải nghiệm bảo hành sản phẩm ưng ý nhất</p>
+            </div>
+            <div class="p-3 rounded flex-fill mt-3" style="background-color: #f6fd76;">
+                <h5 class="fw-bold d-flex align-items-center">
+                    <img src="~/Images/Icon/exchange.jpg" class="me-2" width="40" height="40">
+                    Đổi trả 1-1 hoặc hoàn tiền
+                </h5>
+                <p class="mb-0">Khi sản phẩm phát sinh lỗi và bạn cảm thấy sản phẩm không đáp ứng được nhu cầu</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sản phẩm nổi bật -->
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-3 bg-white">
+        <h2 class="card-header brand-header" style="text-align: center">SẢN PHẨM NỔI BẬT</h2>
+        <div class="row text-center g-4">
+            <a class="product-link col-md-4" href="@Url.Action("Details", "KH_SanPhams_23TH0014", new { id = "SP001" })">
+                <img src="~/Images/Banner/spnb1.jpg" class="img-fluid rounded shadow; p-4">
+            </a>
+            <a class="product-link col-md-4" href="@Url.Action("Details", "KH_SanPhams_23TH0014", new { id = "SP002" })">
+                <img src="~/Images/Banner/spnb2.jpg" class="img-fluid rounded shadow; p-4">
+            </a>
+            <a class="product-link col-md-4" href="@Url.Action("Details", "KH_SanPhams_23TH0014", new { id = "SP003" })">
+                <img src="~/Images/Banner/spnb3.jpg" class="img-fluid rounded shadow; p-4">
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Danh mục sản phẩm -->
+<div class="container mt-5">
+    <div class="row">
+        <!-- Bộ lọc tìm kiếm -->
+        <div class="col-md-3">
+            <div id="product-list" class="card shadow-lg p-3">
+                <h5 class="brand-header">Tìm kiếm</h5>
+                @using (Html.BeginForm("Index", "KH_SanPhams_23TH0014", FormMethod.Get, new { id = "search-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="MaSP" value="@ViewBag.MaSP">
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Tên sản phẩm:</strong></label>
+                        <input type="text" name="TenSP" class="form-control" value="@ViewBag.TenSP">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Giá thấp nhất:</strong></label>
+                        <input type="range" id="gbMin" name="GBMin" class="form-range" min="0" max="70000000" step="1000000"
+                               value="@ViewBag.GBMin" oninput="updateFormattedValues()">
+                        <output id="minOutput">@int.Parse(ViewBag.GBMin).ToString("N0")</output>đ
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Giá cao nhất:</strong></label>
+                        <input type="range" id="gbMax" name="GBMax" class="form-range" min="0" max="70000000" step="1000000"
+                               value="@ViewBag.GBMax" oninput="updateFormattedValues()">
+                        <output id="maxOutput">@int.Parse(ViewBag.GBMax).ToString("N0")</output>đ
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>RAM (GB):</strong></label><br />
+                        <div style="margin-left: 3px">
+                            @{
+                                var ramOptions = new List<int> { 4, 6, 8, 12 };
+                                string[] selectedRams = ViewBag.Ram;
+                            }
+                            @foreach (var ram in ramOptions)
+                            {
+                                <div style="display: inline-block; width: 64px">
+                                    <input class="form-check-input" type="checkbox" name="Ram" value="@ram" id="ram_@ram"
+                                           @(selectedRams.Contains(ram.ToString()) ? "checked" : "")
+                                           style="transform: scale(1.3); margin-right: 5px" />
+                                    <label for="ram_@ram">@ram</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Dung lượng (GB):</strong></label><br />
+                        <div style="margin-left: 3px">
+                            @{
+                                var storageOptions = new List<int> { 64, 128, 256, 512 };
+                                string[] selectedStorages = ViewBag.DungLuong;
+                            }
+                            @foreach (var dungluong in storageOptions)
+                            {
+                                <div style="display: inline-block; width: 64px">
+                                    <input class="form-check-input" type="checkbox" name="DungLuong" value="@dungluong" id="dl_@dungluong"
+                                           @(selectedStorages.Contains(dungluong.ToString()) ? "checked" : "")
+                                           style="transform: scale(1.3); margin-right: 5px" />
+                                    <label for="dl_@dungluong">@dungluong</label>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Hệ điều hành:</strong></label>
+                        <input type="text" name="HDH" class="form-control" value="@ViewBag.HDH">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Hãng:</strong></label>
+                        @Html.DropDownList("MaHSX", null, "Tất cả", new { @class = "form-control" })
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn" style="background: #fe6161; color: white; margin-right: 5px">Tìm kiếm</button>
+                        <button type="reset" class="btn" style="background: #fd710d; color: white" id="reset-button">Nhập lại</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Danh mục sản phẩm -->
+        <div class="col-md-9">
+            <div class="card shadow-lg p-3">
+                @if (ViewBag.TB != null)
+                {
+                    <div class="alert alert-warning">@ViewBag.TB</div>
+                }
+                @foreach (var group in Model)
+                {
+                    <div class="mb-2">
+                        <!-- Tiêu đề hãng -->
+                        <div class="brand-header">@group.Key.TenHSX</div>
+
+                        <!-- Thông tin sản phẩm -->
+                        <div class="product-container">
+                            @foreach (var item in group.GroupBy(sp => sp.MaSP))
+                            {
+                                var product = item.First().SanPham;
+                                var firstImage = item.First().AnhBia;
+
+                                <div class="product-card">
+                                    <a class="product-link" href="@Url.Action("Details", "KH_SanPhams_23TH0014", new { id = product.MaSP })">
+                                        <img src="~/Images/SanPham/@firstImage" alt="@product.TenSP" class="product-image" />
+                                        <h3>@product.TenSP</h3>
+                                        <p class="price">@product.GiaBan.ToString("N0") đ</p>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,144 @@
+﻿@model IEnumerable<object>
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    var use = Session["use"] as QLDT_23TH0014.Models.NguoiDung;
+    int index = 0;
+    string thanhtoan = "";
+    string tinhtrang = "";
+    decimal tongTien = Model.Sum(item => Convert.ToDecimal(item.GetType().GetProperty("ThanhTien").GetValue(item)));
+    var maDDH = Model.First().GetType().GetProperty("MaDDH").GetValue(Model.First());
+    var tinhTrang = Model.First().GetType().GetProperty("TinhTrang").GetValue(Model.First());
+}
+}
+<div class="container">
+    <div class="card shadow-lg pb-4 mt-4" style="max-width: 100%; margin: 0 auto;">
+        <div class="card-header brand-header text-center">
+            Chi tiết đơn hàng @maDDH
+        </div>
+        <div class="card-body">
+            <!--Thông tin đơn hàng-->
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center align-middle">
+                    <thead style="font-weight: bold">
+                        <tr>
+                            <th>STT</th>
+                            <th>Sản Phẩm</th>
+                            <th>Hình Ảnh</th>
+                            <th>Màu Sắc</th>
+                            <th>Số Lượng</th>
+                            <th>Giá Bán</th>
+                            <th>Thành Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var tenSP = item.GetType().GetProperty("TenSP").GetValue(item, null);
+                            var tenMau = item.GetType().GetProperty("TenMau").GetValue(item, null);
+                            var soLuong = item.GetType().GetProperty("SoLuong").GetValue(item, null);
+                            var giaBan = item.GetType().GetProperty("GiaBan").GetValue(item, null);
+                            var thanhTien = item.GetType().GetProperty("ThanhTien").GetValue(item, null);
+                            var anhBia = item.GetType().GetProperty("AnhBia").GetValue(item, null);
+
+                            <tr>
+                                <td>@(++index)</td>
+                                <td><strong>@tenSP</strong></td>
+                                <td>
+                                    <img src="~/Images/SanPham/@anhBia" alt="Ảnh sản phẩm" class="img-thumbnail" style="width: 80px; height: 80px; border: none">
+                                </td>
+                                <td>@tenMau</td>
+                                <td>@soLuong</td>
+                                <td class="text-end">@string.Format("{0:N0} đ", giaBan)</td>
+                                <td class="text-end fw-bold">@string.Format("{0:N0} đ", thanhTien)</td>
+                            </tr>
+                        }
+                        <tr class="fw-bold text-success">
+                            <td colspan="6" class="text-end" style="color: red; font-weight: bold; font-size: 18px">Tổng Tiền:</td>
+                            <td class="text-end" style="color: red; font-weight: bold; font-size: 18px">@string.Format("{0:N0} đ", tongTien)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--Thông tin khách hàng, tình trạng đơn hàng và tình trạng thanh toán-->
+            <div class="mb-3 mt-1"><strong>Tên khách hàng:</strong> @Model.First().GetType().GetProperty("TenKH").GetValue(Model.First())</div>
+            <div class="mb-3 mt-1"><strong>Số điện thoại:</strong> @Model.First().GetType().GetProperty("SDT").GetValue(Model.First())</div>
+            <div class="mb-3 mt-1"><strong>Địa chỉ nhận hàng:</strong> @Model.First().GetType().GetProperty("DiaChiNhanHang").GetValue(Model.First())</div>
+            <div class="mb-3 mt-1">
+                <strong>Tình trạng đơn hàng:</strong>
+                @{
+                    if (tinhTrang.Equals(0))
+                    {
+                        tinhtrang = "Chờ xác nhận";
+                        <span class="badge bg-secondary" style="font-size: 16px">@tinhtrang</span>
+                    }
+                    else if (tinhTrang.Equals(1))
+                    {
+                        tinhtrang = "Chờ giao hàng";
+                        <span class="badge bg-warning" style="font-size: 16px">@tinhtrang</span>
+                    }
+                    else if (tinhTrang.Equals(2))
+                    {
+                        tinhtrang = "Thành công";
+                        <span class="badge bg-success" style="font-size: 16px">@tinhtrang</span>
+                    }
+                    else
+                    {
+                        tinhtrang = "Đã hủy";
+                        <span class="badge bg-danger" style="font-size: 16px">@tinhtrang</span>
+                    }
+                }
+            </div>
+            <div class="mt-1">
+                <strong>Tình trạng thanh toán:</strong>
+                @{
+                    int thanhToan = (int)Model.First().GetType().GetProperty("ThanhToan").GetValue(Model.First());
+                    if (thanhToan == 0)
+                    {
+                        thanhtoan = "Chưa thanh toán";
+                        <span style="font-size: 16px; color: red">@thanhtoan</span>
+                    }
+                    else
+                    {
+                        thanhtoan = "Đã thanh toán";
+                        <span style="font-size: 16px; color: green">@thanhtoan</span>
+                    }
+                }
+            </div>
+        </div>
+        @if (tinhTrang.Equals(0)) // Nếu tình trạng là 0: Đang chờ xác nhận thì mới được duyệt hoặc hủy đơn
+        {
+            <div class="d-flex justify-content-center gap-2 mt-4">
+                <a href="@Url.Action("Delete", "NV_DonHangs_23TH0014", new { id = maDDH })" class="btn btn-danger">Hủy đơn</a>
+                <a href="@Url.Action("Accept", "NV_DonHangs_23TH0014", new { id = maDDH })" class="btn btn-success">Duyệt đơn</a>
+            </div>
+            <div class="text-end" style="margin-right: 26px">
+                <a href="@Url.Action("Index", "NV_DonHangs_23TH0014")">Quay lại</a>
+            </div>
+        }
+        else if (tinhTrang.Equals(1)) // Nếu tình trạng là 1: Đang chờ giao hàng. Nếu là nhân viên thì được hoàn thành đơn. Nếu là admin thì được hủy đơn.
+        {
+            if (use.VaiTro == "NV")
+            {
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <a href="@Url.Action("Index")" class="btn" style="background: #fd710d; color: white;">Quay lại</a>
+                    <a href="@Url.Action("Complete", "NV_DonHangs_23TH0014", new { id = maDDH })" class="btn btn-success">Hoàn thành</a>
+                </div>
+            }
+            else
+            {
+                <div class="d-flex justify-content-center gap-2 mt-4">
+                    <a href="@Url.Action("Index")" class="btn" style="background: #fd710d; color: white;">Quay lại</a>
+                    <a href="@Url.Action("Delete", "NV_DonHangs_23TH0014", new { id = maDDH })" class="btn btn-danger">Hủy đơn</a>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="d-flex justify-content-center mt-4">
+                <a href="@Url.Action("Index")" class="btn" style="background: #fd710d; color: white;">Quay lại</a>
+            </div>
+        }
+    </div>
+</div>

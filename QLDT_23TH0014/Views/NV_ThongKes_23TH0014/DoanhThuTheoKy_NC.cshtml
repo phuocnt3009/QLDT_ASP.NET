@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Thống kê doanh thu theo kỳ";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("reset-button").addEventListener("click", function (event) {
+                event.preventDefault(); // Ngăn chặn hành động mặc định
+
+                let form = document.getElementById("search-form");
+
+                // Reset các input
+                form.querySelectorAll("input").forEach(input => {
+                    if (["number"].includes(input.type)) {
+                        input.value = 6;
+                    }
+                });
+
+                // Reset Dropdown hãng sản xuất
+                let dropdown = form.querySelector("select[name='kieuKy']");
+                if (dropdown) dropdown.selectedIndex = 2;
+
+                // Xóa URL query string (tùy chọn)
+                window.history.replaceState(null, null, window.location.pathname);
+            });
+        });
+
+        //Vẽ biểu đồ
+        const thangLabels = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ThangLabels));
+        const doanhThuData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.DoanhThuData));
+
+        const ctxThang = document.getElementById('thangChart').getContext('2d');
+        new Chart(ctxThang, {
+            type: 'line',
+            data: {
+                labels: thangLabels,
+                datasets: [{
+                    label: 'Doanh thu (VNĐ)',
+                    data: doanhThuData,
+                    borderColor: '#fe6161',
+                }]
+            }
+        });
+    </script>
+}
+<div class="card shadow-lg pb-2">
+    <div class="card-header brand-header text-center">Thống kê doanh thu theo kỳ</div>
+    <div class="card-body">
+        @using (Html.BeginForm("DoanhThuTheoKy_NC", "NV_ThongKes_23TH0014", FormMethod.Get, new { @class = "row g-3 mb-4", id = "search-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-md-3"></div>
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Kỳ thống kê</label>
+                <select name="kieuKy" class="form-select">
+                    <option value="Nam" @(ViewBag.KieuKy == "Nam" ? "selected" : "")>Năm</option>
+                    <option value="Quy" @(ViewBag.KieuKy == "Quy" ? "selected" : "")>Quý</option>
+                    <option value="Thang" @(ViewBag.KieuKy == "Thang" ? "selected" : "")>Tháng</option>
+                    <option value="Tuan" @(ViewBag.KieuKy == "Tuan" ? "selected" : "")>Tuần</option>
+                    <option value="Ngay" @(ViewBag.KieuKy == "Ngay" ? "selected" : "")>Ngày</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label fw-bold">Số kỳ</label>
+                <input type="number" name="soKy" value="@ViewBag.SoKy" min="1" max="12" class="form-control" />
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="reset" class="btn me-3" style="background: #fd710d; color: white" id="reset-button">Nhập lại</button>
+                <button type="submit" class="btn" style="background: #fe6161; color: white;">Thống kê</button>
+            </div>
+            <div class="col-md-3"></div>
+        }
+        <canvas id="thangChart"></canvas>
+        <div style="text-align: right" class="pe-2 pt-2"><a href="@Url.Action("Index", "NV_ThongKes_23TH0014")">Quay lại</a></div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<QLDT_23TH0014.Models.MauSac>
+@{
+    ViewBag.Title = "Quản lý màu sắc";
+    Layout = "~/Views/Shared/_LayoutNV.cshtml";
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    var use = Session["use"] as QLDT_23TH0014.Models.NguoiDung;
+}
+<div class="container">
+    <div class="card shadow-lg pb-4 mt-4" style="max-width: 90%; margin: 0 auto;">
+        <div class="card-header brand-header text-center">
+            Danh sách màu sắc
+        </div>
+        <div class="card-body">
+            @if (use.VaiTro == "AD")
+            {
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="@Url.Action("Create")" class="btn" style="border-radius: 5px; background: #fe6161; color: white">Thêm mới</a>
+                </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center align-middle">
+                    <thead class="fw-bold">
+                        <tr>
+                            <th style="width: 10%">STT</th>
+                            <th>Mã màu:</th>
+                            <th>Tên màu:</th>
+                            @if (use.VaiTro == "AD")
+                            {
+                                <th style="width: 25%">Thao tác</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(++i)</td>
+                                <td>@item.MaMau</td>
+                                <td>@item.TenMau</td>
+
+                                @if (use.VaiTro == "AD")
+                                {
+                                    <td>
+                                        <a href="@Url.Action("Edit", "NV_MauSacs_23TH0014", new { id = item.MaMau })"
+                                           class="btn" style="margin-right: 5px; color: white; background: #fd710d">
+                                            Sửa
+                                        </a>
+                                        <a href="@Url.Action("Delete", "NV_MauSacs_23TH0014", new { id = item.MaMau })"
+                                           class="btn btn-danger">
+                                            Xóa
+                                        </a>
+                                    </td>
+                                 }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="text-end" style="margin-right: 26px">
+            <a href="@Url.Action("Index", "NV_SanPhams_23TH0014")">Về trang chủ</a>
+        </div>
+    </div>
+</div>
